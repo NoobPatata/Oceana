@@ -9,7 +9,10 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450" d:DesignWidth="1000">
 
-
+    <UserControl.Resources>
+        <local:ObservablePrescription x:Key="prescription"/>
+        <CollectionViewSource x:Key="cvsPrescription" Source="{StaticResource prescription}"/>
+    </UserControl.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
 
         <materialDesign:DialogHost.DialogContent>
@@ -112,7 +115,8 @@
                   AutoGenerateColumns="False"
                   materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                  FontSize="18" IsReadOnly="True" >
+                  FontSize="18" IsReadOnly="True" 
+                  ItemsSource="{Binding Source={StaticResource cvsPrescription}}">
 
                     <!--Header Style-->
                     <DataGrid.ColumnHeaderStyle>
@@ -126,15 +130,19 @@
                     <DataGrid.Columns>
                         <materialDesign:DataGridTextColumn
                         Header="Prescription ID"
-                        MaxLength="255"/>
+                        MaxLength="255"
+                        />
                         <materialDesign:DataGridTextColumn
                         Header="Patient ID"
+                            Binding="{Binding PatientFullname}"
                         MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
                         Header="Date"
+                            Binding="{Binding Hari}"
                         MaxLength="25"/>
                         <materialDesign:DataGridTextColumn
                         Header="Description"
+                            Binding="{Binding Description}"
                         MaxLength="255"/>
                     </DataGrid.Columns>
 

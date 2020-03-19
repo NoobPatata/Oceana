@@ -85,6 +85,21 @@ End Class
 
 Public Class DoctorDB
 
+    Public Function GetAllPrescription() As List(Of PrescriptionDetails)
+        Dim record As New List(Of PrescriptionDetails)
+        Dim GetTreatment As String = "SELECT Prescription.Date , Prescription.Disease , [Prescription Details].Description, Treatment.Name , Doctor.FirstName , Doctor.LastName, Patient.FirstName , Patient.LastName
+    FROM (((Prescription INNER JOIN [Prescription Details] ON Prescription.PrescriptionID = [Prescription Details].PrescriptionID) INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID) INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID;
+    "
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetTreatment, Conn)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                record.Add(New PrescriptionDetails(reader("Date"), reader("Disease"), reader("Description"), reader("Name"), reader("Doctor.FirstName"), reader("Doctor.LastName"), reader("Patient.FirstName"), reader("Patient.LastName")))
+            End While
+            Return record
+        End Using
+    End Function
 
     Public Function GetPatientPrescription(fn As String) As List(Of PrescriptionDetails)
         Dim record As New List(Of PrescriptionDetails)
