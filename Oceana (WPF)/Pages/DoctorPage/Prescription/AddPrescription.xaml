@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="AddPrescription"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Oceana__WPF_"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Medium"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             FontSize="16" 
+             Height="500" Width="900">
+    <UserControl.Resources>
+        <local:ObserveTreatment x:Key="Treatment"/>
+        <CollectionViewSource x:Key="cvsTreatment" Source="{StaticResource Treatment}"/>
+    </UserControl.Resources>
+
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Doctor incahrge, Patient ID , Date and Disease Text Box-->
+        <Grid Margin="10,20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO"/>
+                <ColumnDefinition Width="AUTO"/>
+                <ColumnDefinition Width="AUTO"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="10">
+                <TextBlock Margin="10,10,0,5" Text="Doctor Incharge"/>
+                <TextBlock Margin="10,10,0,5" Text="Patient ID"/>
+                <TextBlock Margin="10,10,0,5" Text="Date"/>
+                <TextBlock Margin="10,10,0,5" Text="Disease"/>
+                <TextBlock Margin="10,10,0,5" Text="Treatment"/>
+                <TextBlock Margin="10,10,0,5" Text="Instruction"/>
+
+            </StackPanel>
+
+            <StackPanel Margin="0,10" Grid.Column="1">
+                <TextBlock Margin="0,11,0,5" Text=":"/>
+                <TextBlock Margin="0,10,0,5" Text=":"/>
+                <TextBlock Margin="0,10,0,5" Text=":"/>
+                <TextBlock Margin="0,10,0,5" Text=":"/>
+                <TextBlock Margin="0,10,0,5" Text=":"/>
+                <TextBlock Margin="0,10,0,5" Text=":"/>
+            </StackPanel>
+
+            <StackPanel Margin="10" Grid.Column="2">
+                <TextBlock  Text="Hello" Margin="0,12,0,4" 
+                            VerticalAlignment="Center"/>
+                <TextBlock  Text="Hello" Margin="0,12,0,3" 
+                            VerticalAlignment="Center"/>
+                <DatePicker materialDesign:HintAssist.Hint="Pick Date"
+                            Margin="0,8,0,3" />
+                <TextBox Width="150"/>
+                <ComboBox IsEditable="True"  ItemsSource="{Binding Source={StaticResource cvsTreatment}}"    DisplayMemberPath="Name" Margin="0,6,0,3" >
+                </ComboBox>
+                <TextBox Width="150"
+                         Margin="0,2,0,3"/>
+                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Content="ADD" Width="100" Margin="0,20" HorizontalAlignment="Right"/>
+
+            </StackPanel>
+        </Grid>
+
+        <materialDesign:Card Grid.Column="1" Background="#ECEFF1" Margin="20" UniformCornerRadius="8">
+            
+        </materialDesign:Card>
+
+
+    </Grid>
+</UserControl>

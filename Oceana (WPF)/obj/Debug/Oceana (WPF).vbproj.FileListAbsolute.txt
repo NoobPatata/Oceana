@@ -1,0 +1,167 @@
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\Oceana (WPF).exe.config
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\Oceana (WPF).pdb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\MaterialDesignColors.pdb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Application.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.cache
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.lref
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Application.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).g.resources
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana__WPF_.Resources.resources
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.GenerateResource.cache
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.CopyComplete
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).pdb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\EntityFramework.xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\System.Data.SQLite.xml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\EntityFramework.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\MaterialDesignColors.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\System.Data.SQLite.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\AddPrescription.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\AddPrescription.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patient.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patient.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\PatientRecords.g.vb
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\PatientRecords.baml
+C:\Users\The Noob Man\Desktop\Oceana (WPF)\obj\Debug\Oceana (WPF).vbprojAssemblyReference.cache
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\Oceana (WPF).exe.config
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\Oceana (WPF).pdb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\EntityFramework.dll
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\MaterialDesignColors.dll
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\EntityFramework.xml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\MaterialDesignColors.pdb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patient.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\PatientRecords.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Application.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.cache
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.lref
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Application.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patient.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\PatientRecords.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).g.resources
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana__WPF_.Resources.resources
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.GenerateResource.cache
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.CopyComplete
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).pdb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patients.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patients.baml
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).vbprojAssemblyReference.cache
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\Oceana (WPF).exe.config
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\Oceana (WPF).pdb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\EntityFramework.dll
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\MaterialDesignColors.dll
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\EntityFramework.xml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\MaterialDesignColors.pdb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).vbprojAssemblyReference.cache
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patients.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Application.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.vb
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.cache
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF)_MarkupCompile.lref
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Application.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\AddUser.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\AdminPage.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\AdminPage\UserInfo.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patients.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\DoctorPage.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\LoginPage\MainWindow.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingUC.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\AddPatients.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientDetails.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Patient\PatientUC.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Pages\StaffNurse\StaffNurse.baml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).g.resources
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana__WPF_.Resources.resources
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.GenerateResource.cache
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).vbproj.CopyComplete
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).exe
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).xml
+C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\Oceana (WPF).pdb
