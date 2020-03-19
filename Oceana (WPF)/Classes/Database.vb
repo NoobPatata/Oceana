@@ -84,9 +84,13 @@ Public Class AdminDB
 End Class
 
 Public Class DoctorDB
-    Public Function GetPatientRecord(fn As String) As List(Of PrescriptionList)
-        Dim record As New List(Of PrescriptionList)
-        Dim GetTreatment As String = "SELECT Prescription.PrescriptionID, Prescription.Date, Prescription.PatientID, Prescription.Disease, Doctor.DoctorID, Doctor.FirstName, Doctor.LastName , Patient.FirstName , Patient.LastName FROM (Prescription INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;"
+
+
+    Public Function GetPatientPrescription(fn As String) As List(Of PrescriptionDetails)
+        Dim record As New List(Of PrescriptionDetails)
+        Dim GetTreatment As String = "SELECT Prescription.Date , Prescription.Disease , [Prescription Details].Description, Treatment.Name , Doctor.FirstName , Doctor.LastName, Patient.FirstName , Patient.LastName
+    FROM (((Prescription INNER JOIN [Prescription Details] ON Prescription.PrescriptionID = [Prescription Details].PrescriptionID) INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID) INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;
+    "
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(GetTreatment, Conn)
             Cmd.Parameters.AddWithValue("@FN", fn)
@@ -94,13 +98,13 @@ Public Class DoctorDB
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader()
             While reader.Read()
-                record.Add(New PrescriptionList(reader("PrescriptionID"), reader("Date"), reader("PatientID"), reader("Disease"), reader("DoctorID"), reader("Doctor.FirstName"), reader("Doctor.LastName"), reader("Patient.FirstName"), reader("Patient.LastName")))
+                record.Add(New PrescriptionDetails(reader("Date"), reader("Disease"), reader("Description"), reader("Name"), reader("Doctor.FirstName"), reader("Doctor.LastName"), reader("Patient.FirstName"), reader("Patient.LastName")))
             End While
             Return record
         End Using
     End Function
 
-    Public Function GetAllRecords(FN As String, LN As String) As List(Of PatientList)
+    Public Function GetPatientDetails(FN As String, LN As String) As List(Of PatientList)
         Dim Patients As New List(Of PatientList)
         Dim GetPatients As String = "SELECT * FROM Patient WHERE FirstName = @FN OR LastName = @LN;"
         Using Conn As New OleDbConnection(database.ConnectionString)

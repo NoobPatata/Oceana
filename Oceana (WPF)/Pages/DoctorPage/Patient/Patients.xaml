@@ -16,146 +16,193 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              FontSize="16" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.Resources>
         <local:ObservePatient x:Key="patients"/>
-        <CollectionViewSource x:Key="cvsPatients" Source="{StaticResource patients}"/>
-        <local:ObservePrescription x:Key="prescription"/>
-        <CollectionViewSource x:Key="cvsPrescription" Source="{StaticResource prescription}"/>
+        <CollectionViewSource x:Key="cvsPatients" Source="{StaticResource patients}"
+                              />
+        <local:ObservablePrescription x:Key="prescription"/>
+        <CollectionViewSource x:Key="cvsPrescription" Source="{StaticResource prescription}"
+                              />
     </UserControl.Resources>
-    
-    <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="AUTO"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Button  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
+                    <Button.CommandParameter>
+                        <sys:Boolean>
+                            True
+                        </sys:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+                <Button  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
+                    <Button.CommandParameter>
+                        <sys:Boolean>
+                            False
+                        </sys:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+            </Grid>
+        </materialDesign:DialogHost.DialogContent>
+        
+        <Grid>
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel>
-            <!--Search Text BOX-->
-            <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
-                    <materialDesign:PackIcon Grid.Row="1"  Kind="Search" Width="30" Height="30" Margin="15,0,10,0" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtSearch" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
-                             Width="250" materialDesign:HintAssist.Hint="SEARCH PATIENT"  FontSize="15"/>
-            </StackPanel>
+            <Grid>
 
-            <!--This grid stores the items in row 1-->
-            
-            <Grid Margin="20,0,20,10">
-                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="AUTO"/>
-                    <ColumnDefinition Width="AUTO"/>
-                    <ColumnDefinition Width="AUTO"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!--Text Block for labeling the content-->
-                <StackPanel >
-                    <TextBlock Text="Patient ID" Margin="20,10,10,5"
-                                   VerticalAlignment="Center"/>
-                    <TextBlock Text="Patient Name" Margin="20,5"
-                                   VerticalAlignment="Center"/>
-                    <TextBlock Text="Blood Type" Margin="20,5"
-                                   VerticalAlignment="Center"/>
-                    <TextBlock Text="Allergies" Margin="20,5"
-                                   VerticalAlignment="Center"/>
+                <!--Search Text BOX-->
+                <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
+                    <materialDesign:PackIcon Grid.Row="1"  Kind="Search" Width="30" Height="30" Margin="15,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSearch" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
+                                 Width="250" materialDesign:HintAssist.Hint="SEARCH PATIENT"  FontSize="15"/>
                 </StackPanel>
 
-                <!--Text Box to allign the ":"-->
-                <StackPanel Grid.Column="1">
-                    <TextBlock Margin="0,9,0,5" Text=":" />
-                    <TextBlock Margin="0,5" Text=":" />
-                    <TextBlock Margin="0,5" Text=":" />
-                    <TextBlock Margin="0,5" Text=":" />
-                </StackPanel>
+                <Button x:Name="btnAdd" Margin="20,0" Grid.Column="1" Content="ADD PRESCRIPTION" VerticalAlignment="Center" 
+                        Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                        Width="160" HorizontalAlignment="Right"/>
 
-
-                <!--The binding of the items go here-->
-                <StackPanel Grid.Column="2" >
-                    <ItemsControl  ItemsSource="{Binding Source={StaticResource cvsPatients}}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock  Text="{Binding Path=PatientID }" Margin="10,10,0,5"
-                                           VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource cvsPatients}}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=Fullname}" Margin="10,5"
-                                           VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource cvsPatients}}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=BloodType}" Margin="10,5"
-                                           VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource cvsPatients}}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=Allergies}" Margin="10,5"
-                                           VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
             </Grid>
+               
+                
 
-        </StackPanel>
+            <!--This grid stores the items in row 1-->
+            <Grid Grid.Row="1" Margin="20,0,20,10">
 
-            <!--Container to keep the datagrid-->
-        <materialDesign:Card Grid.Row="1" Background="#ECEFF1"
-                             Margin="10" UniformCornerRadius="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="AUTO"/>
+                            <ColumnDefinition Width="AUTO"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-            <DataGrid ColumnWidth="*" x:Name="dgPatients"  
-                      CanUserSortColumns="True"
-                      SelectionMode="Extended"
-                      CanUserAddRows="False"
-                      CanUserReorderColumns="False"
-                      AutoGenerateColumns="False"
-                      materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                      materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                      FontSize="18" IsReadOnly="True" 
-                      ItemsSource="{Binding Source={StaticResource cvsPrescription}}">
-            
-                   <!--Header Style-->
-                   <DataGrid.ColumnHeaderStyle>
-                        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
-                           <Setter Property="FontSize" Value="16"/>
-                           <Setter Property="Background" Value="#ECEFF1"/>
-                        </Style>
-                   </DataGrid.ColumnHeaderStyle>
-            
-                   <!--Data Grid Column -->
-                   <DataGrid.Columns>
-                                <materialDesign:DataGridTextColumn
-                                 Header="Date"
-                                 Binding="{Binding Hari}"
-                                 MaxLength="255"/>
-                                <materialDesign:DataGridTextColumn
-                                 Header="Doctor Incharge"
-                                 Binding="{Binding DoctorFullName}"
-                                 MaxLength="255"/>
-                                <materialDesign:DataGridTextColumn
-                                 Header="Disease"
-                                 Binding="{Binding Disease}"
-                                 MaxLength="255"/>
 
-                   </DataGrid.Columns>
-            
-            </DataGrid>
-                    
-        </materialDesign:Card>
+                        <!--Text Block for labeling the content-->
+                        <StackPanel >
+                            <TextBlock Text="Patient ID" Margin="20,10,10,5"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Patient Name" Margin="20,5"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Blood Type" Margin="20,5"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Allergies" Margin="20,5"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!--Text Box to allign the ":"-->
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Margin="0,9,0,5" Text=":" />
+                            <TextBlock Margin="0,5" Text=":" />
+                            <TextBlock Margin="0,5" Text=":" />
+                            <TextBlock Margin="0,5" Text=":" />
+                        </StackPanel>
+
+
+                        <!--The binding of the items go here-->
+                        <StackPanel Grid.Column="2" >
+                        <ItemsControl x:Name="PID" ItemsSource="{Binding Source={StaticResource cvsPatients}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock  Text="{Binding Path=PatientID }" Margin="10,10,0,5"
+                                           VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl x:Name="FN" ItemsSource="{Binding Source={StaticResource cvsPatients}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Fullname}" Margin="10,5"
+                                           VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl x:Name="BT" ItemsSource="{Binding Source={StaticResource cvsPatients}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=BloodType}" Margin="10,5"
+                                           VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl x:Name="AL" ItemsSource="{Binding Source={StaticResource cvsPatients}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Allergies}" Margin="10,5"
+                                           VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                        
+                    </Grid>
+
+
+                <!--Container to keep the datagrid-->
+            <materialDesign:Card Grid.Row="2" Background="#ECEFF1"
+                                 Margin="10" UniformCornerRadius="10">
+
+                <DataGrid ColumnWidth="*" x:Name="dgRecord"  
+                          CanUserSortColumns="True"
+                          SelectionMode="Extended"
+                          CanUserAddRows="False"
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                          FontSize="18" IsReadOnly="True" 
+                          ItemsSource="{Binding Source={StaticResource cvsPrescription}}">
+                
+                       <!--Header Style-->
+                       <DataGrid.ColumnHeaderStyle>
+                            <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
+                               <Setter Property="FontSize" Value="16"/>
+                               <Setter Property="Background" Value="#ECEFF1"/>
+                            </Style>
+                       </DataGrid.ColumnHeaderStyle>
+                
+                       <!--Data Grid Column -->
+                       <DataGrid.Columns>
+                                    <materialDesign:DataGridTextColumn
+                                     Header="Date"
+                                     Binding="{Binding Hari}"
+                                     MaxLength="255"/>
+                                    <materialDesign:DataGridTextColumn
+                                     Header="Doctor Incharge"
+                                     Binding="{Binding DoctorFullname}"
+                                     MaxLength="255"/>
+                                    <materialDesign:DataGridTextColumn
+                                     Header="Medicine"
+                                     Binding="{Binding Nama}"
+                                     MaxLength="255"/>
+                                     <materialDesign:DataGridTextColumn
+                                     Header="Description"
+                                     Binding="{Binding Description}"
+                                     MaxLength="255"/>
+                                    <materialDesign:DataGridTextColumn
+                                     Header="Disease"
+                                     Binding="{Binding Disease}"
+                                     MaxLength="255"/>
+
+                       </DataGrid.Columns>
+                
+                </DataGrid>
+                        
+            </materialDesign:Card>
             
         
 
-    </Grid>
+        </Grid>
+    </materialDesign:DialogHost>
 
 
 </UserControl>

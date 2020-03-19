@@ -57,11 +57,11 @@
 
                 <!-- First Name and IC text box-->
                 <StackPanel Grid.Row="1">
-                    <TextBox Text="{Binding FN}" x:Name="txtFirstName"
+                    <TextBox TabIndex="0" Text="{Binding FN}" x:Name="txtFirstName"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="First Name"
                              Margin="20,5"/>
-                    <TextBox Text="{Binding ID}" x:Name="txtIC"
+                    <TextBox TabIndex="2" Text="{Binding ID}" x:Name="txtIC"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Identification Number"
                              Margin="20,5"/>
@@ -69,7 +69,7 @@
 
                 <!--Last Name text box-->
                 <StackPanel Grid.Column="1" Grid.Row="1">
-                    <TextBox Text="{Binding LN}" x:Name="txtLastName"
+                    <TextBox TabIndex="1" Text="{Binding LN}" x:Name="txtLastName"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Last Name"
                              Margin="20,5"/>
@@ -81,14 +81,14 @@
 
                 <!--Phone number and Address text box-->
                 <StackPanel Grid.Row="3">
-                    <TextBox Text="{Binding CN}" x:Name="txtPhone"
+                    <TextBox TabIndex="3" Text="{Binding CN}" x:Name="txtPhone"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Phone Number"
                              Margin="20,5"
                              MaxLength="11"
                              />
                     <StackPanel  Grid.Row="3">
-                        <TextBox Text="{Binding AD}" x:Name="txtAddress"
+                        <TextBox TabIndex="5" Text="{Binding AD}" x:Name="txtAddress"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Address"
                              Margin="20,5" 
@@ -98,7 +98,7 @@
 
                 <!--Email text box-->
                 <StackPanel Grid.Column="1" Grid.Row="3">
-                    <TextBox Text="{Binding EM}" x:Name="txtEmail"
+                    <TextBox TabIndex="4"  Text="{Binding EM}" x:Name="txtEmail"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Email"
                              Margin="20,5"/>
@@ -110,11 +110,11 @@
 
                 <!--Heigh and Allergic text box-->
                 <StackPanel  Grid.Row="5">
-                    <TextBox Text="{Binding CM}" x:Name="txtHeight"
+                    <TextBox TabIndex="6" Text="{Binding CM}" x:Name="txtHeight"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Height"
                              Margin="20,5"/>
-                    <TextBox Text="{Binding AL}" x:Name="txtAllergies"
+                    <TextBox TabIndex="8"  Text="{Binding AL}" x:Name="txtAllergies"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Allergies"
                              Margin="20,5"/>
@@ -122,11 +122,11 @@
                 
                 <!--Weight and Blood Type Text Box-->
                 <StackPanel Grid.Column="1" Grid.Row="5">
-                    <TextBox Text="{Binding KG}" x:Name="txtWeight"
+                    <TextBox TabIndex="7" Text="{Binding KG}" x:Name="txtWeight"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Weight"
                              Margin="20,5"/>
-                    <ComboBox SelectedItem="{Binding BT}" x:Name="cbbBloodType"
+                    <ComboBox TabIndex="9"  SelectedItem="{Binding BT}" x:Name="cbbBloodType"
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                              materialDesign:HintAssist.Hint="BloodType"
                              Margin="20,5"/>
@@ -136,8 +136,8 @@
 
             <StackPanel Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Center"
                     Orientation="Horizontal" >
-                <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True" Width="80" Height="40" Margin="25,5" Content="Add"/>
-                <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="False" Width="80" Height="40" Margin="25,5" Content="Discard"/>
+                <Button TabIndex="10"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True" Width="80" Height="40" Margin="25,5" Content="Add"/>
+                <Button TabIndex="11"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="False" Width="80" Height="40" Margin="25,5" Content="Discard"/>
             </StackPanel>
 
         </Grid>

@@ -89,8 +89,11 @@
     <Compile Include="Model\PatientList.vb" />
     <Compile Include="Classes\PropertyChanged.vb" />
     <Compile Include="Model\LoginUsers.vb" />
-    <Compile Include="Model\PrescriptionList.vb" />
+    <Compile Include="Model\PrescriptionDetails.vb" />
     <Compile Include="Model\Treatment.vb" />
+    <Compile Include="Pages\DoctorPage\Patient\MedicalRecord.xaml.vb">
+      <DependentUpon>MedicalRecord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DoctorPage\Patient\Patients.xaml.vb">
       <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
@@ -111,7 +114,8 @@
     </Compile>
     <Compile Include="ViewModels\Admin\AddUserViewModel.vb" />
     <Compile Include="ViewModels\Admin\UserInfoViewModel.vb" />
-    <Compile Include="ViewModels\Doctor\PatientRecordsViewModel.vb" />
+    <Compile Include="ViewModels\Doctor\AddPrescriptionViewModel.vb" />
+    <Compile Include="ViewModels\Doctor\MedicalRecordViewModel.vb" />
     <Compile Include="ViewModels\StaffNurse\AddPatientViewModel.vb" />
     <Compile Include="ViewModels\StaffNurse\PatientInfoViewModel.vb" />
     <Page Include="Pages\AdminPage\AddUser.xaml">
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdminPage\UserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DoctorPage\Patient\MedicalRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

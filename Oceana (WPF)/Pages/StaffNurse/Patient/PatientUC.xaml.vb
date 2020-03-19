@@ -13,13 +13,13 @@ Public Class Nurse_Patient
     End Sub
 
     Private Async Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
-        Dim inpatient As PatientList = New PatientList()
-        Dim result As Boolean = Await DialogHost.Show(New AddPatients(inpatient), "RootDialog")
+        Dim ispatient As PatientList = New PatientList()
+        Dim result As Boolean = Await DialogHost.Show(New AddPatients(ispatient), "RootDialog")
         If result = True Then
-            If gVars.Nurse.InsertNewPatient(inpatient) > 0 Then
-                MsgBox("Success! New user (" + inpatient.Email + ") successfully created!")
+            If gVars.Nurse.InsertNewPatient(ispatient) > 0 Then
+                MsgBox("Success! New user (" + ispatient.Email + ") successfully created!")
             Else
-                MsgBox("Failure! Failed to create user (" + inpatient.Email + ")!")
+                MsgBox("Failure! Failed to create user (" + ispatient.Email + ")!")
             End If
         End If
 

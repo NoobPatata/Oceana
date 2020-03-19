@@ -4,17 +4,17 @@
 winexe
 VB
 .vb
-C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\obj\Debug\
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\
 Oceana__WPF_
 none
 false
 
-C:\Users\The Noob Man\Desktop\OceanaClinic-029ba4651899923e105f796bed7f6a6bcef77b72\Oceana (WPF)\Application.xaml
-131557051510
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Application.xaml
+14-213695385
 
-31-1503969771
-1666612757
-Pages\AdminPage\AddUser.xaml;Pages\AdminPage\AdminPage.xaml;Pages\AdminPage\UserInfo.xaml;Pages\DoctorPage\Patient\Patients.xaml;Pages\DoctorPage\Prescription\AddPrescription.xaml;Pages\DoctorPage\DoctorPage.xaml;Pages\DoctorPage\Prescription\Prescription.xaml;Pages\LoginPage\MainWindow.xaml;Pages\StaffNurse\Billing\BillingUC.xaml;Pages\StaffNurse\Patient\AddPatients.xaml;Pages\StaffNurse\Patient\PatientDetails.xaml;Pages\StaffNurse\Patient\PatientUC.xaml;Pages\StaffNurse\StaffNurse.xaml;
+321642092447
+161830396848
+Pages\AdminPage\AddUser.xaml;Pages\AdminPage\AdminPage.xaml;Pages\AdminPage\UserInfo.xaml;Pages\DoctorPage\Patient\MedicalRecord.xaml;Pages\DoctorPage\Patient\Patients.xaml;Pages\DoctorPage\Prescription\AddPrescription.xaml;Pages\DoctorPage\DoctorPage.xaml;Pages\DoctorPage\Prescription\Prescription.xaml;Pages\LoginPage\MainWindow.xaml;Pages\StaffNurse\Billing\BillingUC.xaml;Pages\StaffNurse\Patient\AddPatients.xaml;Pages\StaffNurse\Patient\PatientDetails.xaml;Pages\StaffNurse\Patient\PatientUC.xaml;Pages\StaffNurse\StaffNurse.xaml;
 
 False
 
