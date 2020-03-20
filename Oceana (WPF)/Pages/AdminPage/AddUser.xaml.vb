@@ -22,4 +22,5 @@ Public Class AddUser
     Private Sub cbbUserGroup_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbbUserGroup.SelectionChanged
         cbbUserGroup.SelectedItem.ToString()
     End Sub
+
 End Class

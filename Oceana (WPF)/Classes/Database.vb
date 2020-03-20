@@ -10,7 +10,6 @@ End Class
 
 Public Class AdminDB
 
-    'Insert all the data from LoginUsers table into LoginUsers Class
     Public Function GetAllUsers() As List(Of LoginUsers)
         Dim users As New List(Of LoginUsers)
         Dim GetUsers As String = "SELECT * FROM LoginUser;"
@@ -25,7 +24,6 @@ Public Class AdminDB
         End Using
     End Function
 
-    'Insert new users into LoginUsers table in Database
     Public Function InsertNewUser(user As LoginUsers) As Integer
 
         Using conn As New OleDbConnection(database.ConnectionString)
@@ -79,6 +77,44 @@ Public Class AdminDB
             conn.Close()
             Return i
         End Using
+    End Function
+
+    Public Function InsertNewDoctor(user As LoginUsers) As Integer
+        Dim i As Integer
+
+        If user.UserGroup = "Doctor" Then
+
+            Using conn As New OleDbConnection(database.ConnectionString)
+                conn.Open()
+                Dim insertNewUserDoctorQuery As String =
+                        "insert into Doctor ([FirstName],[LastName],[Email]) VALUES (@Firstname,@Lastname,@Email); "
+                Dim cmd As New OleDbCommand(insertNewUserDoctorQuery, conn)
+                cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
+                cmd.Parameters.AddWithValue("@Lastname", user.LastName)
+                cmd.Parameters.AddWithValue("@Email", user.Email)
+                i = cmd.ExecuteNonQuery()
+                conn.Close()
+                Return i
+            End Using
+
+        ElseIf user.UserGroup = "Nurse" Then
+
+            Using conn As New OleDbConnection(database.ConnectionString)
+                conn.Open()
+                Dim insertNewUserDoctorQuery As String =
+                        "insert into Nurse ([FirstName],[LastName],[Email]) VALUES (@Firstname,@Lastname,@Email); "
+                Dim cmd As New OleDbCommand(insertNewUserDoctorQuery, conn)
+                cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
+                cmd.Parameters.AddWithValue("@Lastname", user.LastName)
+                cmd.Parameters.AddWithValue("@Email", user.Email)
+                i = cmd.ExecuteNonQuery()
+                conn.Close()
+                Return i
+            End Using
+        End If
+
+        Return i
+
     End Function
 
 End Class

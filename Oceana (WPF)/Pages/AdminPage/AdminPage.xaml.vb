@@ -18,8 +18,9 @@ Public Class AdminPage
         Dim newUser As LoginUsers = New LoginUsers()
         Dim result As Boolean = Await DialogHost.Show(New AddUser(newUser), "RootDialog")
         If result = True Then
-            If gVars.Admin.InsertNewUser(newUser) > 0 Then
+            If (gVars.Admin.InsertNewUser(newUser) > 0 And gVars.Admin.InsertNewDoctor(newUser) > 0 ) Then
                 MsgBox("Success! New user (" + newUser.Email + ") successfully created!")
+
             Else
                 MsgBox("Failure! Failed to create user (" + newUser.Email + ")!")
             End If
