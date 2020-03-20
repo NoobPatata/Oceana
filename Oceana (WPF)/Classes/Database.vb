@@ -151,47 +151,55 @@ End Class
 
 Public Class DoctorDB
 
-    Public Function GetAllPrescription() As List(Of PrescriptionDetails)
-        Dim record As New List(Of PrescriptionDetails)
-        Dim GetTreatment As String = "SELECT Prescription.Date , Prescription.Disease , [Prescription Details].Description, Treatment.Name , Doctor.FirstName , Doctor.LastName, Patient.FirstName , Patient.LastName
-    FROM (((Prescription INNER JOIN [Prescription Details] ON Prescription.PrescriptionID = [Prescription Details].PrescriptionID) INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID) INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID;
-    "
+
+    'Get Patient Past prescription by Patient Firstname or Lastname
+    Public Function GetPatientPrescription(nama As String)
+        Dim Prescription As New List(Of PrescriptionDetails)
+        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Doctor.FirstName + ' ' + Doctor.LastName As [Doctor Fullname] FROM (Doctor INNER JOIN Prescription ON Doctor.DoctorID = Prescription.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;"
         Using Conn As New OleDbConnection(database.ConnectionString)
-            Dim Cmd As New OleDbCommand(GetTreatment, Conn)
+            Dim Cmd As New OleDbCommand(GetPrescription, Conn)
+            Cmd.Parameters.AddWithValue("@FN", nama)
+            Cmd.Parameters.AddWithValue("@LN", nama)
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader()
             While reader.Read()
-                record.Add(New PrescriptionDetails(reader("Date"), reader("Disease"), reader("Description"), reader("Name"), reader("Doctor.FirstName"), reader("Doctor.LastName"), reader("Patient.FirstName"), reader("Patient.LastName")))
+                Prescription.Add(New PrescriptionDetails(reader("PrescriptionID"),
+                    reader("Date"),
+                    reader("Disease"),
+                    reader("Doctor Fullname")))
             End While
-            Return record
+            Return Prescription
         End Using
+
     End Function
 
-    Public Function GetPatientPrescription(fn As String) As List(Of PrescriptionDetails)
-        Dim record As New List(Of PrescriptionDetails)
-        Dim GetTreatment As String = "SELECT Prescription.Date , Prescription.Disease , [Prescription Details].Description, Treatment.Name , Doctor.FirstName , Doctor.LastName, Patient.FirstName , Patient.LastName
-    FROM (((Prescription INNER JOIN [Prescription Details] ON Prescription.PrescriptionID = [Prescription Details].PrescriptionID) INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID) INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;
-    "
+    'Get Patient Past prescription by Patient ID
+    Public Function GetPatientPrescriptionByID(ID As Integer)
+        Dim Prescription As New List(Of PrescriptionDetails)
+        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Doctor.FirstName + ' ' + Doctor.LastName As [Doctor Fullname] FROM (Doctor INNER JOIN Prescription ON Doctor.DoctorID = Prescription.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE Patient.PatientID = @ID;"
         Using Conn As New OleDbConnection(database.ConnectionString)
-            Dim Cmd As New OleDbCommand(GetTreatment, Conn)
-            Cmd.Parameters.AddWithValue("@FN", fn)
-            Cmd.Parameters.AddWithValue("@LN", fn)
+            Dim Cmd As New OleDbCommand(GetPrescription, Conn)
+            Cmd.Parameters.AddWithValue("@ID", ID)
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader()
             While reader.Read()
-                record.Add(New PrescriptionDetails(reader("Date"), reader("Disease"), reader("Description"), reader("Name"), reader("Doctor.FirstName"), reader("Doctor.LastName"), reader("Patient.FirstName"), reader("Patient.LastName")))
+                Prescription.Add(New PrescriptionDetails(reader("PrescriptionID"),
+                    reader("Date"),
+                    reader("Disease"),
+                    reader("Doctor Fullname")))
             End While
-            Return record
+            Return Prescription
         End Using
+
     End Function
 
-    Public Function GetPatientDetails(FN As String, LN As String) As List(Of PatientList)
+    'Load the data base on Patient ID
+    Public Function GetPatientByID(name As Integer) As List(Of PatientList)
         Dim Patients As New List(Of PatientList)
-        Dim GetPatients As String = "SELECT * FROM Patient WHERE FirstName = @FN OR LastName = @LN;"
+        Dim GetPatients As String = "SELECT * FROM Patient WHERE PatientID = @ID;"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(GetPatients, Conn)
-            Cmd.Parameters.AddWithValue("@FN", FN)
-            Cmd.Parameters.AddWithValue("@LN", LN)
+            Cmd.Parameters.AddWithValue("@ID", name)
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader()
 
@@ -212,6 +220,35 @@ Public Class DoctorDB
         End Using
     End Function
 
+    'Load data based on Patient Firstname or Lastname
+    Public Function GetPatientDetails(name As String) As List(Of PatientList)
+        Dim Patients As New List(Of PatientList)
+        Dim GetPatients As String = "SELECT * FROM Patient WHERE FirstName = @FN OR LastName = @LN;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetPatients, Conn)
+            Cmd.Parameters.AddWithValue("@FN", name)
+            Cmd.Parameters.AddWithValue("@LN", name)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+
+            While reader.Read()
+                Patients.Add(New PatientList(reader("PatientID"),
+                    reader("FirstName"),
+                    reader("LastName"),
+                    reader("IdentificationNumber"),
+                    reader("CurrentAddress"),
+                    reader("ContactNumber"),
+                    reader("Email"),
+                    reader("Height"),
+                    reader("Weight"),
+                    reader("BloodType"),
+                    reader("Allergies")))
+            End While
+            Return Patients
+        End Using
+    End Function
+
+    'Get all the treatment available
     Public Function GetAllTreatment() As List(Of Treatment)
         Dim treatment As New List(Of Treatment)
         Dim GetTreatment As String = "SELECT * FROM Treatment;"

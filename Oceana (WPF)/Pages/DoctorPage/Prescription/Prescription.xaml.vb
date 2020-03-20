@@ -9,7 +9,7 @@ Public Class Prescription
 
         ' Add any initialization after the InitializeComponent() call.
         _prescription = Me.Resources("prescription")
-        refreshUsers()
+        'refreshUsers()
     End Sub
 
     Private Async Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
@@ -18,10 +18,10 @@ Public Class Prescription
 
     End Sub
 
-    Public Sub refreshUsers()
-        _prescription.Clear()
-        For Each prescription As PrescriptionDetails In gVars.Doctor.GetAllPrescription()
-            _prescription.Add(prescription)
-        Next
-    End Sub
+    'Public Sub refreshUsers()
+    '    _prescription.Clear()
+    '    For Each prescription As PrescriptionDetails In gVars.Doctor.GetAllPrescription()
+    '        _prescription.Add(prescription)
+    '    Next
+    'End Sub
 End Class

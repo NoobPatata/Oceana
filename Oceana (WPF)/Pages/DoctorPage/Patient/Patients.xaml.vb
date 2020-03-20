@@ -3,7 +3,7 @@ Imports MaterialDesignThemes.Wpf
 Public Class Patients
 
     Dim _patient As ObservePatient
-    Dim _record As ObservablePrescription
+    Dim _prescription As ObservablePrescription
 
 
     Public Sub New()
@@ -13,35 +13,52 @@ Public Class Patients
 
         ' Add any initialization after the InitializeComponent() call.
         _patient = Me.Resources("patients")
-        _record = Me.Resources("prescription")
+        _prescription = Me.Resources("prescription")
 
 
     End Sub
 
+    'Search text box
     Private Sub txtSearch_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtSearch.TextChanged
-        loadRecord()
-        loadPatient()
+
+        If IsNumeric(txtSearch.Text) Then
+            loadPatientByID()
+            loadRecordByID()
+        Else
+            loadPatient()
+            loadRecord()
+        End If
+
     End Sub
 
+    'load patient past prescription by name
     Public Sub loadRecord()
-        _record.Clear()
+        _prescription.Clear()
         For Each record As PrescriptionDetails In gVars.Doctor.GetPatientPrescription(txtSearch.Text)
-            _record.Add(record)
+            _prescription.Add(record)
         Next
     End Sub
 
-    Private Async Sub dgRecord_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles dgRecord.MouseDoubleClick
-        If dgRecord.SelectedIndex = -1 Then
-            Return
-        End If
-        Dim selectedrecord As PrescriptionDetails = New PrescriptionDetails(dgRecord.SelectedValue)
-        Await DialogHost.Show(New MedicalRecord(selectedrecord), "RootDialog")
-
+    'load patient past prescription by patientID
+    Public Sub loadRecordByID()
+        _prescription.Clear()
+        For Each record As PrescriptionDetails In gVars.Doctor.GetPatientPrescriptionByID(txtSearch.Text)
+            _prescription.Add(record)
+        Next
     End Sub
 
+    'load patient details by name
     Public Sub loadPatient()
         _patient.Clear()
-        For Each Patients As PatientList In gVars.Doctor.GetPatientDetails(txtSearch.Text, txtSearch.Text)
+        For Each Patients As PatientList In gVars.Doctor.GetPatientDetails(txtSearch.Text)
+            _patient.Add(Patients)
+        Next
+    End Sub
+
+    'load patient details by patientID
+    Public Sub loadPatientByID()
+        _patient.Clear()
+        For Each Patients As PatientList In gVars.Doctor.GetPatientByID(txtSearch.Text)
             _patient.Add(Patients)
         Next
     End Sub
@@ -52,20 +69,13 @@ Public Class Patients
     End Sub
 
 
-    Public Sub CollectionViewSource_Filter(sender As Object, e As FilterEventArgs)
-        Dim p As PatientList = e.Item
-        If p IsNot Nothing Then
-            If (Not String.IsNullOrEmpty(txtSearch.Text)) Then
-                Dim x As String = txtSearch.Text.ToLower 'change the text in txtSearch to lowercase
-                If (p.PatientID.ToString.Contains(x) Or p.FirstName.ToLower.Contains(x) Or p.LastName.ToLower.Contains(x) Or p.IdentificationNumber.ToLower.Contains(x) Or
-                p.Email.ToLower.Contains(x)) Then
-                    e.Accepted = True
-                Else
-                    e.Accepted = False
-                End If
-            Else
-                e.Accepted = True
-            End If
-        End If
-    End Sub
 End Class
+
+'Private Async Sub dgRecord_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles dgRecord.MouseDoubleClick
+'    If dgRecord.SelectedIndex = -1 Then
+'        Return
+'    End If
+'    Dim selectedrecord As PrescriptionDetails = New PrescriptionDetails(dgRecord.SelectedValue)
+'    Await DialogHost.Show(New MedicalRecord(selectedrecord), "RootDialog")
+
+'End Sub

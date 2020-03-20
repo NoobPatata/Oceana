@@ -22,8 +22,8 @@
         <CollectionViewSource x:Key="cvsPatients" Source="{StaticResource patients}"
                               />
         <local:ObservablePrescription x:Key="prescription"/>
-        <CollectionViewSource x:Key="cvsPrescription" Source="{StaticResource prescription}"
-                              />
+        <CollectionViewSource x:Key="cvsPrescription" Source="{StaticResource prescription}"/>
+
     </UserControl.Resources>
 
     <materialDesign:DialogHost Identifier="RootDialog">
@@ -174,26 +174,22 @@
                        <DataGrid.Columns>
                                     <materialDesign:DataGridTextColumn
                                      Header="Date"
-                                     Binding="{Binding Hari}"
+                                     Binding="{Binding PrescriptionID}"
                                      MaxLength="255"/>
                                     <materialDesign:DataGridTextColumn
                                      Header="Doctor Incharge"
-                                     Binding="{Binding DoctorFullname}"
+                                     Binding="{Binding Hari}"
                                      MaxLength="255"/>
                                     <materialDesign:DataGridTextColumn
                                      Header="Medicine"
-                                     Binding="{Binding Nama}"
+                                     Binding="{Binding Fullname}"
                                      MaxLength="255"/>
-                                     <materialDesign:DataGridTextColumn
+                        <materialDesign:DataGridTextColumn
                                      Header="Description"
-                                     Binding="{Binding Description}"
-                                     MaxLength="255"/>
-                                    <materialDesign:DataGridTextColumn
-                                     Header="Disease"
                                      Binding="{Binding Disease}"
                                      MaxLength="255"/>
 
-                       </DataGrid.Columns>
+                    </DataGrid.Columns>
                 
                 </DataGrid>
                         
