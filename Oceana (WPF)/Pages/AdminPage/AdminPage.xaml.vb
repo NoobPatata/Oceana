@@ -18,12 +18,14 @@ Public Class AdminPage
         Dim newUser As LoginUsers = New LoginUsers()
         Dim result As Boolean = Await DialogHost.Show(New AddUser(newUser), "RootDialog")
         If result = True Then
-            If (gVars.Admin.InsertNewUser(newUser) > 0 And gVars.Admin.InsertNewDoctor(newUser) > 0 ) Then
+
+            If gVars.Admin.InsertNewUser(newUser) > 0 Then
                 MsgBox("Success! New user (" + newUser.Email + ") successfully created!")
 
             Else
                 MsgBox("Failure! Failed to create user (" + newUser.Email + ")!")
             End If
+            gVars.Admin.InsertNewProfile(newUser)
         End If
 
         refreshUsers()
@@ -34,13 +36,25 @@ Public Class AdminPage
         If (dgUsers.SelectedIndex = -1) Then
             Return
         End If
+
         Dim selectedUsers As List(Of LoginUsers) = Converter.SelectedItemsToListOfUsers(dgUsers.SelectedItems)
+
+        For Each profile In selectedUsers
+            If profile.UserGroup = "Doctor" Then
+                gVars.Admin.RemoveDoctor(selectedUsers)
+            ElseIf profile.UserGroup = "Nurse" Then
+                gVars.Admin.RemoveNurse(selectedUsers)
+            End If
+        Next
+
         If gVars.Admin.RemoveUsers(selectedUsers) > 0 Then
             MsgBox("Success! " + selectedUsers.Count.ToString + " users removed!")
         Else
             MsgBox("Failure! " + selectedUsers.Count.ToString + "users failed to be removed!")
         End If
+
         refreshUsers()
+
     End Sub
 
     Private Async Sub btnEdit_Click(sender As Object, e As RoutedEventArgs) Handles btnEdit.Click

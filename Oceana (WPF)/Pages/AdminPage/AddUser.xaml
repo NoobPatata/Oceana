@@ -28,7 +28,7 @@
             <Label Margin="25,5" Content="Email"/>
             <TextBox  Text="{Binding EM}" Margin="25,5" x:Name="txtEmail"/>
             <Label Margin="25,5" Content="UserGroup"/>
-            <ComboBox  SelectedItem="{Binding UG}"  Margin="25,5" x:Name="cbbUserGroup">
+            <ComboBox   SelectedItem="{Binding UG}"  Margin="25,5" x:Name="cbbUserGroup">
           
             </ComboBox>
             <StackPanel Margin="0,10"  Orientation="Horizontal" HorizontalAlignment="Center">

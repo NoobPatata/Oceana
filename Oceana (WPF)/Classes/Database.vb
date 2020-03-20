@@ -79,7 +79,7 @@ Public Class AdminDB
         End Using
     End Function
 
-    Public Function InsertNewDoctor(user As LoginUsers) As Integer
+    Public Function InsertNewProfile(user As LoginUsers) As Integer
         Dim i As Integer
 
         If user.UserGroup = "Doctor" Then
@@ -87,11 +87,8 @@ Public Class AdminDB
             Using conn As New OleDbConnection(database.ConnectionString)
                 conn.Open()
                 Dim insertNewUserDoctorQuery As String =
-                        "insert into Doctor ([FirstName],[LastName],[Email]) VALUES (@Firstname,@Lastname,@Email); "
+                        "insert into Doctor ([FirstName],[LastName],[Email],[UserID]) SELECT [FirstName],[LastName],[Email],[UserID] FROM LoginUser WHERE UserID = (Select MAX(UserID) From LoginUser);"
                 Dim cmd As New OleDbCommand(insertNewUserDoctorQuery, conn)
-                cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
-                cmd.Parameters.AddWithValue("@Lastname", user.LastName)
-                cmd.Parameters.AddWithValue("@Email", user.Email)
                 i = cmd.ExecuteNonQuery()
                 conn.Close()
                 Return i
@@ -102,11 +99,8 @@ Public Class AdminDB
             Using conn As New OleDbConnection(database.ConnectionString)
                 conn.Open()
                 Dim insertNewUserDoctorQuery As String =
-                        "insert into Nurse ([FirstName],[LastName],[Email]) VALUES (@Firstname,@Lastname,@Email); "
+                        "insert into Nurse ([FirstName],[LastName],[Email],[UserID]) SELECT [FirstName],[LastName],[Email],[UserID] FROM LoginUser WHERE UserID = (Select MAX(UserID) From LoginUser); "
                 Dim cmd As New OleDbCommand(insertNewUserDoctorQuery, conn)
-                cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
-                cmd.Parameters.AddWithValue("@Lastname", user.LastName)
-                cmd.Parameters.AddWithValue("@Email", user.Email)
                 i = cmd.ExecuteNonQuery()
                 conn.Close()
                 Return i
@@ -115,6 +109,42 @@ Public Class AdminDB
 
         Return i
 
+    End Function
+
+    Public Function RemoveDoctor(_users As List(Of LoginUsers)) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim removeUserQuery As String = "DELETE FROM Doctor WHERE UserID IN ("
+            For Each user As LoginUsers In _users
+                If user.UserID = _users.Last.UserID Then
+                    removeUserQuery += user.UserID.ToString + ");"
+                Else
+                    removeUserQuery += user.UserID.ToString + ","
+                End If
+            Next
+            Dim cmd As New OleDbCommand(removeUserQuery, conn)
+            Dim i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    Public Function RemoveNurse(_users As List(Of LoginUsers)) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim removeNurseQuery As String = "DELETE FROM Nurse WHERE UserID IN ("
+            For Each user As LoginUsers In _users
+                If user.UserID = _users.Last.UserID Then
+                    removeNurseQuery += user.UserID.ToString + ");"
+                Else
+                    removeNurseQuery += user.UserID.ToString + ","
+                End If
+            Next
+            Dim cmd As New OleDbCommand(removeNurseQuery, conn)
+            Dim i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
     End Function
 
 End Class
