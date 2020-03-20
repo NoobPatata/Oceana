@@ -173,19 +173,19 @@
                        <!--Data Grid Column -->
                        <DataGrid.Columns>
                                     <materialDesign:DataGridTextColumn
-                                     Header="Date"
+                                     Header="Prescription ID"
                                      Binding="{Binding PrescriptionID}"
                                      MaxLength="255"/>
                                     <materialDesign:DataGridTextColumn
-                                     Header="Doctor Incharge"
+                                     Header="Date"
                                      Binding="{Binding Hari}"
                                      MaxLength="255"/>
                                     <materialDesign:DataGridTextColumn
-                                     Header="Medicine"
+                                     Header="Doctor Incharge"
                                      Binding="{Binding Fullname}"
                                      MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
-                                     Header="Description"
+                                     Header="Disease"
                                      Binding="{Binding Disease}"
                                      MaxLength="255"/>
 
