@@ -63,11 +63,22 @@ Public Class Patients
         Next
     End Sub
 
+
+
     Private Async Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
         Dim inpatient As PatientList = New PatientList()
         Dim result As Boolean = Await DialogHost.Show(New AddPrescription, "RootDialog")
     End Sub
 
+    Private Async Sub dgRecord_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles dgRecord.MouseDoubleClick
+
+        Dim selectedUsers As List(Of PrescriptionDetails) = Converter.SelectedItemsToListOfPrescription(dgRecord.SelectedItems)
+        For Each profile In selectedUsers
+            Dim selected As MedicalRecordDetails
+            selected = New MedicalRecordDetails(gVars.Doctor.GetPrescriptionDetails(profile.PrescriptionID))
+            Dim result As Boolean = Await DialogHost.Show(New MedicalRecord(selected), "RootDialog")
+        Next
+    End Sub
 
 End Class
 

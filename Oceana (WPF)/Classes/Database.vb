@@ -263,6 +263,27 @@ Public Class DoctorDB
         End Using
     End Function
 
+    'Get the details in each prescription
+    Public Function GetPrescriptionDetails(ID As String) As List(Of MedicalRecordDetails)
+        Dim Prescription As New List(Of MedicalRecordDetails)
+        Dim GetPrescription As String = "SELECT Treatment.Name , [Prescription Details].Description , Doctor.FirstName + ' ' + Doctor.LastName as [Doctor Incharge]
+FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID) INNER JOIN Prescription ON [Prescription Details].PrescriptionID = Prescription.PrescriptionID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID) INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID Where Prescription.PrescriptionID = @ID;
+"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetPrescription, Conn)
+            Cmd.Parameters.AddWithValue("@ID", ID)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                Prescription.Add(New MedicalRecordDetails(reader("Name"),
+                    reader("Description"),
+                    reader("Doctor Incharge")))
+            End While
+            Return Prescription
+        End Using
+
+    End Function
+
 End Class
 
 

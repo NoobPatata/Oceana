@@ -86,6 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Converter.vb" />
     <Compile Include="Classes\Global.vb" />
+    <Compile Include="Model\MedicalRecordDetails.vb" />
     <Compile Include="Model\PatientList.vb" />
     <Compile Include="Classes\PropertyChanged.vb" />
     <Compile Include="Model\LoginUsers.vb" />

@@ -33,5 +33,15 @@ Public Class Converter
         Return patients
     End Function
 
+
+    Public Shared Function SelectedItemsToListOfPrescription(selectedItems As IList) As List(Of PrescriptionDetails)
+        Dim prescriptions As New List(Of PrescriptionDetails)
+        For Each prescription As PrescriptionDetails In selectedItems
+            prescriptions.Add(New PrescriptionDetails(prescription.PrescriptionID, prescription.Hari, prescription.Disease, prescription.Fullname))
+        Next
+        Return prescriptions
+    End Function
+
+
 End Class
 

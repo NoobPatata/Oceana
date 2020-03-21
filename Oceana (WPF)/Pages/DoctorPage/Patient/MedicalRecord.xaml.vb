@@ -1,14 +1,13 @@
 ﻿Public Class MedicalRecord
+    Dim ViewModel As New MedicalRecordViewModel
+    Public Sub New(ByRef _PDetails As MedicalRecordDetails)
 
-    'Dim ViewModel As New MedicalRecordViewModel
+        ' This call is required by the designer.
+        InitializeComponent()
 
-    'Public Sub New(ByRef _record As PrescriptionDetails)
+        ' Add any initialization after the InitializeComponent() call.
+        ViewModel.OutDetaills = _PDetails
+        DataContext = ViewModel
 
-    '    ' This call is required by the designer.
-    '    InitializeComponent()
-
-    '    ' Add any initialization after the InitializeComponent() call.
-    '    DataContext = ViewModel
-    '    ViewModel.inRecord = _record
-    'End Sub
+    End Sub
 End Class
