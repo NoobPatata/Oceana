@@ -154,10 +154,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\Prescription.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\DoctorPage\Transition\AddPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,9 +185,6 @@
     </Compile>
     <Compile Include="Pages\DoctorPage\DoctorPage.xaml.vb">
       <DependentUpon>DoctorPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\Prescription.xaml.vb">
-      <DependentUpon>Prescription.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginPage\MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>

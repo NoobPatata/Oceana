@@ -209,16 +209,6 @@ DoctorPage
 InitializeComponent
 </summary>
 </member>
-<member name="T:Oceana__WPF_.Prescription">
-<summary>
-Prescription
-</summary>
-</member>
-<member name="M:Oceana__WPF_.Prescription.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
-</member>
 <member name="T:Oceana__WPF_.MainWindow">
 <summary>
 MainWindow
@@ -227,6 +217,36 @@ MainWindow
 <member name="M:Oceana__WPF_.MainWindow.InitializeComponent">
 <summary>
 InitializeComponent
+</summary>
+</member>
+<member name="T:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+<summary>
+GeneratedInternalTypeHelper
+</summary>
+</member>
+<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+<summary>
+CreateInstance
+</summary>
+</member>
+<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+<summary>
+GetPropertyValue
+</summary>
+</member>
+<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+<summary>
+SetPropertyValue
+</summary>
+</member>
+<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+<summary>
+CreateDelegate
+</summary>
+</member>
+<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+<summary>
+AddEventHandler
 </summary>
 </member>
 </members>

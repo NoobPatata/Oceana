@@ -6,6 +6,8 @@ Public Class PrescriptionDetails
     Private _PrescriptionID As String
     Private _Hari As String
     Private _Disease As String
+    Private _DID As String
+    Private _PID As String
     Private _PFirstName As String
     Private _PLastName As String
     Private _DFirstName As String
@@ -14,11 +16,12 @@ Public Class PrescriptionDetails
     Private _PFullname As String
 
 
-
-    Public Sub New(prescriptionID As String, hari As String, disease As String, pFirstName As String, pLastName As String, dFirstName As String, dLastName As String)
+    Public Sub New(prescriptionID As String, hari As String, disease As String, dID As String, pID As String, pFirstName As String, pLastName As String, dFirstName As String, dLastName As String)
         _PrescriptionID = prescriptionID
         _Hari = hari
         _Disease = disease
+        _DID = dID
+        _PID = pID
         _PFirstName = pFirstName
         _PLastName = pLastName
         _DFirstName = dFirstName
@@ -110,8 +113,30 @@ Public Class PrescriptionDetails
             Return PFirstName + " " + PLastName
         End Get
     End Property
+
+    Public Property DID As String
+        Get
+            Return _DID
+        End Get
+        Set(value As String)
+            _DID = value
+            OnPropertyChanged(NameOf(DID))
+        End Set
+    End Property
+
+    Public Property PID As String
+        Get
+            Return _PID
+        End Get
+        Set(value As String)
+            _PID = value
+            OnPropertyChanged(NameOf(PID))
+        End Set
+    End Property
 End Class
 
 Public Class ObservablePrescription
+
     Inherits ObservableCollection(Of PrescriptionDetails)
+
 End Class

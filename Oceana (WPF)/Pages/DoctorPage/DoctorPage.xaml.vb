@@ -13,10 +13,7 @@
                 ucs = New Patients
                 GridMain.Children.Add(ucs)
 
-            Case "Prescription"
-                GridMain.Children.Clear()
-                ucs = New Prescription
-                GridMain.Children.Add(ucs)
+
 
         End Select
 

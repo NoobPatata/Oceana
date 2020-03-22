@@ -15,12 +15,16 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              FontSize="16" 
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="300" d:DesignWidth="500"
+             >
     <Grid>
 
         <materialDesign:Transitioner AutoApplyTransitionOrigins="True" SelectedIndex="0">
 
             <materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:SlideWipe Direction="Right"/>
+                </materialDesign:TransitionerSlide.ForwardWipe>
                 <local:AddPrescription/>
             </materialDesign:TransitionerSlide>
 

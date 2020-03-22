@@ -26,7 +26,7 @@
         <CollectionViewSource x:Key="cvsPesakit" Source="{StaticResource pesakit}"/>
     </UserControl.Resources>
     
-    <materialDesign:Card  Background="#ECEFF1"  UniformCornerRadius="8">
+    <materialDesign:Card  UniformCornerRadius="8">
 
         <!--Doctor incahrge, Patient ID , Date and Disease Text Box-->
         <Grid Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
