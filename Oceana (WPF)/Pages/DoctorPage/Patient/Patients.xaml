@@ -182,7 +182,7 @@
                                      MaxLength="255"/>
                                     <materialDesign:DataGridTextColumn
                                      Header="Doctor Incharge"
-                                     Binding="{Binding Fullname}"
+                                     Binding="{Binding DFullname}"
                                      MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
                                      Header="Disease"

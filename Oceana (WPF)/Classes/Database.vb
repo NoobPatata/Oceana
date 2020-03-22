@@ -155,7 +155,9 @@ Public Class DoctorDB
     'Get Patient Past prescription by Patient Firstname or Lastname
     Public Function GetPatientPrescription(nama As String)
         Dim Prescription As New List(Of PrescriptionDetails)
-        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Doctor.FirstName + ' ' + Doctor.LastName As [Doctor Fullname] FROM (Doctor INNER JOIN Prescription ON Doctor.DoctorID = Prescription.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;"
+        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Patient.FirstName , Patient.LastName , Doctor.FirstName , Doctor.LastName
+FROM (Prescription INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID
+WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(GetPrescription, Conn)
             Cmd.Parameters.AddWithValue("@FN", nama)
@@ -166,7 +168,10 @@ Public Class DoctorDB
                 Prescription.Add(New PrescriptionDetails(reader("PrescriptionID"),
                     reader("Date"),
                     reader("Disease"),
-                    reader("Doctor Fullname")))
+                    reader("Patient.FirstName"),
+                    reader("Patient.LastName"),
+                    reader("Doctor.FirstName"),
+                    reader("Doctor.LastName")))
             End While
             Return Prescription
         End Using
@@ -176,7 +181,9 @@ Public Class DoctorDB
     'Get Patient Past prescription by Patient ID
     Public Function GetPatientPrescriptionByID(ID As Integer)
         Dim Prescription As New List(Of PrescriptionDetails)
-        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Doctor.FirstName + ' ' + Doctor.LastName As [Doctor Fullname] FROM (Doctor INNER JOIN Prescription ON Doctor.DoctorID = Prescription.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE Patient.PatientID = @ID;"
+        Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Patient.FirstName , Patient.LastName , Doctor.FirstName , Doctor.LastName
+FROM (Prescription INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID
+Patient.PatientID = @ID;"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(GetPrescription, Conn)
             Cmd.Parameters.AddWithValue("@ID", ID)
@@ -186,7 +193,10 @@ Public Class DoctorDB
                 Prescription.Add(New PrescriptionDetails(reader("PrescriptionID"),
                     reader("Date"),
                     reader("Disease"),
-                    reader("Doctor Fullname")))
+                    reader("Patient.FirstName"),
+                    reader("Patient.LastName"),
+                    reader("Doctor.FirstName"),
+                    reader("Doctor.LastName")))
             End While
             Return Prescription
         End Using
