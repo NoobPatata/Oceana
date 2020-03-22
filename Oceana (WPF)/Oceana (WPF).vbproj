@@ -86,6 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Converter.vb" />
     <Compile Include="Classes\Global.vb" />
+    <Compile Include="ViewModels\Doctor\DetailsID.vb" />
     <Compile Include="Model\Doctor.vb" />
     <Compile Include="Model\MedicalRecordDetails.vb" />
     <Compile Include="Model\PatientList.vb" />
@@ -99,10 +100,10 @@
     <Compile Include="Pages\DoctorPage\Patient\Patients.xaml.vb">
       <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Transition\AddPrescription.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\Transition\AddPrescription.xaml.vb">
       <DependentUpon>AddPrescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Transition\AddTreatment.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\Transition\AddTreatment.xaml.vb">
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffNurse\Billing\BillingUC.xaml.vb">
@@ -124,6 +125,7 @@
     <Compile Include="ViewModels\Admin\UserInfoViewModel.vb" />
     <Compile Include="ViewModels\Doctor\AddPrescriptionViewModel.vb" />
     <Compile Include="ViewModels\Doctor\MedicalRecordViewModel.vb" />
+    <Compile Include="ViewModels\Doctor\PrescriptionTreatments.vb" />
     <Compile Include="ViewModels\StaffNurse\AddPatientViewModel.vb" />
     <Compile Include="ViewModels\StaffNurse\PatientInfoViewModel.vb" />
     <Page Include="Pages\AdminPage\AddUser.xaml">
@@ -154,11 +156,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Transition\AddPrescription.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\Transition\AddPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Transition\AddTreatment.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\Transition\AddTreatment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

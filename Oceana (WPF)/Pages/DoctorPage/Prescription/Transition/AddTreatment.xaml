@@ -20,6 +20,8 @@
     <UserControl.Resources>
         <local:ObserveTreatment x:Key="Treatment"/>
         <CollectionViewSource x:Key="cvsTreatment" Source="{StaticResource Treatment}"/>
+        <local:ObservablePrescriptionTreatments x:Key="PrescriptionTreatement"/>
+        <CollectionViewSource x:Key="cvsPrescriptionTreatment" Source="{StaticResource PrescriptionTreatement}"/>
     </UserControl.Resources>
     
     <Grid >
@@ -57,7 +59,7 @@
                 <ComboBox   Width="150" Margin="5,0"
                       IsEditable="True" IsReadOnly="False" x:Name="cbbTreatment" 
                       ItemsSource="{Binding Source={StaticResource cvsTreatment}}" DisplayMemberPath="Name" />
-                <TextBox Margin="5,8"/>
+                <TextBox x:Name="txtDescription" Margin="5,8"/>
 
             </StackPanel>
 
@@ -82,7 +84,7 @@
                       AutoGenerateColumns="False"
                       materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                      FontSize="18" IsReadOnly="True" >
+                      FontSize="18" IsReadOnly="True" ItemsSource="{Binding Source={StaticResource cvsPrescriptionTreatment}}">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
@@ -90,6 +92,17 @@
                         <Setter Property="Background" Value="#ECEFF1"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    
+                    <materialDesign:DataGridTextColumn Header="Treatment"
+                                     Binding="{Binding TreatmentName}"
+                                     MaxLength="255"/>
+                    <materialDesign:DataGridTextColumn Header="Description"
+                                     Binding="{Binding Description}"
+                                     MaxLength="255"/>
+
+                </DataGrid.Columns>
 
             </DataGrid>
         </materialDesign:Card>

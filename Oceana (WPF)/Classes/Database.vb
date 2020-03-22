@@ -10,6 +10,7 @@ End Class
 
 Public Class AdminDB
 
+    'Get all the users in LoginUsers
     Public Function GetAllUsers() As List(Of LoginUsers)
         Dim users As New List(Of LoginUsers)
         Dim GetUsers As String = "SELECT * FROM LoginUser;"
@@ -24,6 +25,7 @@ Public Class AdminDB
         End Using
     End Function
 
+    'Create new user
     Public Function InsertNewUser(user As LoginUsers) As Integer
 
         Using conn As New OleDbConnection(database.ConnectionString)
@@ -43,6 +45,7 @@ Public Class AdminDB
         End Using
     End Function
 
+    'Remove a user
     Public Function RemoveUsers(_users As List(Of LoginUsers)) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             conn.Open()
@@ -61,6 +64,7 @@ Public Class AdminDB
         End Using
     End Function
 
+    'Update a user profile
     Public Function UpdateUser(user As LoginUsers) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             Dim updateUserQuery As String = "UPDATE LoginUser SET LoginUser.FirstName = @Firstname,  LoginUser.LastName = @Lastname, LoginUser.Username= @Username, LoginUser.Password = @Password, LoginUser.Email = @Email, LoginUser.UserGroup = @UserGroup WHERE LoginUser.UserId = @userId"
@@ -79,6 +83,7 @@ Public Class AdminDB
         End Using
     End Function
 
+    'Insert data into Doctor or Nurse from LoginUser
     Public Function InsertNewProfile(user As LoginUsers) As Integer
         Dim i As Integer
 
@@ -111,6 +116,7 @@ Public Class AdminDB
 
     End Function
 
+    'Remove the user from Doctor table also
     Public Function RemoveDoctor(_users As List(Of LoginUsers)) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             conn.Open()
@@ -129,6 +135,7 @@ Public Class AdminDB
         End Using
     End Function
 
+    'Remove the user from Nurse table also
     Public Function RemoveNurse(_users As List(Of LoginUsers)) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             conn.Open()
@@ -150,7 +157,6 @@ Public Class AdminDB
 End Class
 
 Public Class DoctorDB
-
 
     'Get Patient Past prescription by Patient Firstname or Lastname
     Public Function GetPatientPrescription(nama As String)
@@ -363,11 +369,98 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
 
     End Function
 
+    'Get the treatment ID based on the name of treatment
+    Public Function GetTreatmentID(med As String)
+        Dim value As String
+        Dim GetTreatment As String = "SELECT TreatmentID FROM Treatment WHERE Name = @med;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetTreatment, Conn)
+            Cmd.Parameters.AddWithValue("@med", med)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+            Return value
+        End Using
+    End Function
+
+    'Get the latest prescription ID
+    Public Function GetPrescriptionID()
+        Dim value As Integer
+        Dim getID As String = "SELECT MAX(PrescriptionID) FROM Prescription;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+        End Using
+        Return value
+    End Function
+
+    'Insert details into prescription Details
+    Public Function InsertIntoPrescriptionDetails(PID As Integer, TID As Integer, Desc As String) As Integer
+        Dim insertDetails As String = "INSERT INTO [Prescription Details] ( PrescriptionID , TreatmentID , Description ) values (@PID , @TID , @DESC) ;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(insertDetails, Conn)
+            Cmd.Parameters.AddWithValue("@PID", PID)
+            Cmd.Parameters.AddWithValue("@TID", TID)
+            Cmd.Parameters.AddWithValue("@DESC", Desc)
+            Conn.Open()
+            Dim i As Integer
+            i = Cmd.ExecuteNonQuery()
+            Return i
+        End Using
+
+    End Function
+
+    'Get the latest invoice ID
+    Public Function GetInvoiceID()
+        Dim value As Integer
+        Dim getID As String = "SELECT MAX([Invoice ID]) FROM Invoice;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+        End Using
+        Return value
+    End Function
+
+    'Get the list of details ID in which match a prescription ID
+    Public Function GetDetailsID(id As Integer) As List(Of DetailsID)
+        Dim newDetailsID As New List(Of DetailsID)
+        Dim getID As String = "Select DetailsID from [Prescription Details] WHERE PrescriptionID = @ID"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Cmd.Parameters.AddWithValue("@ID", id)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader
+            While reader.Read()
+                newDetailsID.Add(New DetailsID(reader("DetailsID")))
+            End While
+            Return newDetailsID
+
+        End Using
+
+    End Function
+
+    'Insert details into invoice details
+    Public Function InsertIntoInvoiceDetails(IID As Integer, PID As Integer) As Integer
+        Dim insertDetails As String = "INSERT INTO [Invoice Details] ([InvoiceID], [DetailsID]) VALUES (@IID , @PID);"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(insertDetails, Conn)
+            Cmd.Parameters.AddWithValue("@IID", IID)
+            Cmd.Parameters.AddWithValue("@PID", PID)
+            Conn.Open()
+            Dim i As Integer
+            i = Cmd.ExecuteNonQuery()
+            Return i
+        End Using
+
+    End Function
+
 End Class
 
 
 Public Class StaffNurseDB
 
+    'Create new patient
     Public Function InsertNewPatient(patient As PatientList) As Integer
 
         Using conn As New OleDbConnection(database.ConnectionString)
@@ -391,6 +484,7 @@ Public Class StaffNurseDB
         End Using
     End Function
 
+    'Remove Patient
     Public Function RemovePatient(_patient As List(Of PatientList)) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             conn.Open()
@@ -409,6 +503,7 @@ Public Class StaffNurseDB
         End Using
     End Function
 
+    'Update patient information
     Public Function UpdatePatient(patient As PatientList) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             Dim updatePatientQuery As String = "UPDATE Patient SET Patient.FirstName = @Firstname,  Patient.LastName = @Lastname, Patient.IdentificationNumber= @ID, Patient.CurrentAddress = @AD, Patient.ContactNumber = @CN, Patient.Email = @Email, Patient.Height = @Height, Patient.Weight = @Weight, Patient.BloodType = @BT, Patient.Allergies = @AL WHERE Patient.PatientID = @PID"
@@ -431,6 +526,7 @@ Public Class StaffNurseDB
         End Using
     End Function
 
+    'Get a list of all Patient
     Public Function GetAllPatients() As List(Of PatientList)
         Dim Patients As New List(Of PatientList)
         Dim GetPatients As String = "SELECT * FROM Patient;"
@@ -454,7 +550,5 @@ Public Class StaffNurseDB
             Return Patients
         End Using
     End Function
-
-
 
 End Class
