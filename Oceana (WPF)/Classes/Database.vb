@@ -182,7 +182,7 @@ WHERE Patient.FirstName = @FN OR Patient.LastName = @LN;"
     Public Function GetPatientPrescriptionByID(ID As Integer)
         Dim Prescription As New List(Of PrescriptionDetails)
         Dim GetPrescription As String = "SELECT Prescription.PrescriptionID , Prescription.Date , Prescription.Disease , Patient.FirstName , Patient.LastName , Doctor.FirstName , Doctor.LastName
-FROM (Prescription INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID
+FROM (Prescription INNER JOIN Doctor ON Prescription.DoctorID = Doctor.DoctorID) INNER JOIN Patient ON Prescription.PatientID = Patient.PatientID WHERE 
 Patient.PatientID = @ID;"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(GetPrescription, Conn)
@@ -290,6 +290,70 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
                     reader("Doctor Incharge")))
             End While
             Return Prescription
+        End Using
+
+    End Function
+
+    'Get all the doctor
+    Public Function GetAllDoctor() As List(Of Doctor)
+        Dim doc As New List(Of Doctor)
+        Dim GetUsers As String = "SELECT * FROM Doctor;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetUsers, Conn)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                doc.Add(New Doctor(reader("DoctorID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber"), reader("ContactNumber").ToString, reader("Email"), reader("Address")))
+            End While
+            Return doc
+        End Using
+    End Function
+
+    'Create new prescription
+    Public Function InsertNewPrescription(pesakit As String, doctor As String) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim InsertNewPrescriptionQuery As String =
+                        "Insert INTO Prescription ([PatientID] , [DoctorID] ) Select PatientID , DoctorID FROM [Doctor] , [Patient] WHERE  Patient.FirstName = @patient AND Doctor.FirstName = @doctor  ;"
+            Dim cmd As New OleDbCommand(InsertNewPrescriptionQuery, conn)
+            cmd.Parameters.AddWithValue("@patient", pesakit)
+            cmd.Parameters.AddWithValue("@doctor", doctor)
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+
+    End Function
+
+    'Insert the date and disease into prescription table
+    Public Function AddDateAndDisease(hari As String, disease As String) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim InsertDateAndDisease As String =
+                        "UPDATE  Prescription Set [Date] = @hari , [Disease] = @sakit WHERE PrescriptionID = (Select MAX(PrescriptionID) from Prescription)"
+            Dim cmd As New OleDbCommand(InsertDateAndDisease, conn)
+            cmd.Parameters.AddWithValue("@hari", hari)
+            cmd.Parameters.AddWithValue("@sakit", disease)
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+
+    End Function
+
+    'Insert data into Invoice table
+    Public Function CreateNewInvoice() As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim InsertNewInvoice As String =
+                        "INSERT INTO Invoice ([PatientID] , [Date]) Select [PatientID] , [Date]  from Prescription Where PrescriptionID = (Select MAX(PrescriptionID) from Prescription )"
+            Dim cmd As New OleDbCommand(InsertNewInvoice, conn)
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
         End Using
 
     End Function

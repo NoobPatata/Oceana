@@ -66,8 +66,9 @@ Public Class Patients
 
 
     Private Async Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
-        Dim inpatient As PatientList = New PatientList()
-        Dim result As Boolean = Await DialogHost.Show(New AddPrescription, "RootDialog")
+
+        Await DialogHost.Show(New MainTransition, "RootDialog")
+
     End Sub
 
     Private Async Sub dgRecord_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles dgRecord.MouseDoubleClick
@@ -82,11 +83,3 @@ Public Class Patients
 
 End Class
 
-'Private Async Sub dgRecord_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles dgRecord.MouseDoubleClick
-'    If dgRecord.SelectedIndex = -1 Then
-'        Return
-'    End If
-'    Dim selectedrecord As PrescriptionDetails = New PrescriptionDetails(dgRecord.SelectedValue)
-'    Await DialogHost.Show(New MedicalRecord(selectedrecord), "RootDialog")
-
-'End Sub

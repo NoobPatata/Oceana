@@ -74,6 +74,26 @@ Patients
 InitializeComponent
 </summary>
 </member>
+<member name="T:Oceana__WPF_.AddPrescription">
+<summary>
+AddPrescription
+</summary>
+</member>
+<member name="M:Oceana__WPF_.AddPrescription.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:Oceana__WPF_.AddTreatment">
+<summary>
+AddTreatment
+</summary>
+</member>
+<member name="M:Oceana__WPF_.AddTreatment.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
 <member name="T:Oceana__WPF_.BillingUC">
 <summary>
 BillingUC
@@ -169,12 +189,12 @@ UserInfo
 InitializeComponent
 </summary>
 </member>
-<member name="T:Oceana__WPF_.AddPrescription">
+<member name="T:Oceana__WPF_.MainTransition">
 <summary>
-AddPrescription
+MainTransition
 </summary>
 </member>
-<member name="M:Oceana__WPF_.AddPrescription.InitializeComponent">
+<member name="M:Oceana__WPF_.MainTransition.InitializeComponent">
 <summary>
 InitializeComponent
 </summary>
@@ -207,36 +227,6 @@ MainWindow
 <member name="M:Oceana__WPF_.MainWindow.InitializeComponent">
 <summary>
 InitializeComponent
-</summary>
-</member>
-<member name="T:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-<summary>
-GeneratedInternalTypeHelper
-</summary>
-</member>
-<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-<summary>
-CreateInstance
-</summary>
-</member>
-<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-<summary>
-GetPropertyValue
-</summary>
-</member>
-<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-<summary>
-SetPropertyValue
-</summary>
-</member>
-<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-<summary>
-CreateDelegate
-</summary>
-</member>
-<member name="M:Oceana__WPF_.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-<summary>
-AddEventHandler
 </summary>
 </member>
 </members>

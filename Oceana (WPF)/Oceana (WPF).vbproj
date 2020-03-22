@@ -86,6 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Converter.vb" />
     <Compile Include="Classes\Global.vb" />
+    <Compile Include="Model\Doctor.vb" />
     <Compile Include="Model\MedicalRecordDetails.vb" />
     <Compile Include="Model\PatientList.vb" />
     <Compile Include="Classes\PropertyChanged.vb" />
@@ -97,6 +98,12 @@
     </Compile>
     <Compile Include="Pages\DoctorPage\Patient\Patients.xaml.vb">
       <DependentUpon>Patients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DoctorPage\Transition\AddPrescription.xaml.vb">
+      <DependentUpon>AddPrescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DoctorPage\Transition\AddTreatment.xaml.vb">
+      <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffNurse\Billing\BillingUC.xaml.vb">
       <DependentUpon>BillingUC.xaml</DependentUpon>
@@ -139,7 +146,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\AddPrescription.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\MainTransition.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +155,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DoctorPage\Prescription\Prescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DoctorPage\Transition\AddPrescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DoctorPage\Transition\AddTreatment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,8 +184,8 @@
     <Compile Include="Pages\AdminPage\UserInfo.xaml.vb">
       <DependentUpon>UserInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\AddPrescription.xaml.vb">
-      <DependentUpon>AddPrescription.xaml</DependentUpon>
+    <Compile Include="Pages\DoctorPage\Prescription\MainTransition.xaml.vb">
+      <DependentUpon>MainTransition.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DoctorPage\DoctorPage.xaml.vb">
       <DependentUpon>DoctorPage.xaml</DependentUpon>
