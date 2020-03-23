@@ -208,29 +208,30 @@
                     <!--Data Grid Column-->
                     <DataGrid.Columns>
                         <materialDesign:DataGridTextColumn
-                        Header="UserID"
-                        Binding="{Binding UserID}"
-                        MaxLength="255" Width="150"/>
+                            Header="UserID"
+                            Binding="{Binding UserID}"
+                            MaxLength="255" Width="150"/>
                         <materialDesign:DataGridTextColumn
-                        Header="Full Name"
+                            Header="Full Name"
                             Binding="{Binding Fullname}"
-                        MaxLength="255"/>
+                            MaxLength="255" />
                         <materialDesign:DataGridTextColumn
-                        Header="Username"
+                         Header="Username"
                             Binding="{Binding Username}"
-                        MaxLength="255"/>
+                            MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
-                        Header="Password"
+                            Header="Password"
                             Binding="{Binding Password}"
-                        MaxLength="255"/>
+                            MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
-                        Header="Email"
+                            Header="Email"
                             Binding="{Binding Email}"
-                        MaxLength="255"/>
+                            MaxLength="255"/>
                         <materialDesign:DataGridTextColumn
-                        Header="User Group"
+                            Header="User Group"
                             Binding="{Binding UserGroup}"
-                        MaxLength="255"/>
+                            MaxLength="255"
+                           />
                     </DataGrid.Columns>
 
                 </DataGrid>

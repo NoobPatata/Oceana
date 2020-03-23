@@ -10,11 +10,11 @@ none
 false
 
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Application.xaml
-15-864350324
+16-1515022088
 
-391173784772
+40-855011117
 161830396848
-Pages\AdminPage\AddUser.xaml;Pages\AdminPage\AdminPage.xaml;Pages\AdminPage\UserInfo.xaml;Pages\DoctorPage\Patient\MedicalRecord.xaml;Pages\DoctorPage\Patient\Patients.xaml;Pages\DoctorPage\Prescription\MainTransition.xaml;Pages\DoctorPage\DoctorPage.xaml;Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml;Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml;Pages\LoginPage\MainWindow.xaml;Pages\StaffNurse\Billing\BillingUC.xaml;Pages\StaffNurse\Patient\AddPatients.xaml;Pages\StaffNurse\Patient\PatientDetails.xaml;Pages\StaffNurse\Patient\PatientUC.xaml;Pages\StaffNurse\StaffNurse.xaml;
+Pages\AdminPage\AddUser.xaml;Pages\AdminPage\AdminPage.xaml;Pages\AdminPage\UserInfo.xaml;Pages\DoctorPage\Patient\MedicalRecord.xaml;Pages\DoctorPage\Patient\Patients.xaml;Pages\DoctorPage\Prescription\MainTransition.xaml;Pages\DoctorPage\DoctorPage.xaml;Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml;Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml;Pages\LoginPage\MainWindow.xaml;Pages\StaffNurse\Billing\BillingTransition.xaml;Pages\StaffNurse\Billing\Transitions\PatientBills.xaml;Pages\StaffNurse\Patient\AddPatients.xaml;Pages\StaffNurse\Patient\PatientDetails.xaml;Pages\StaffNurse\Patient\PatientUC.xaml;Pages\StaffNurse\StaffNurse.xaml;
 
-False
+True
 

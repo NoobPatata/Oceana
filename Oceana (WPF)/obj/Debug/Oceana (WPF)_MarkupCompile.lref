@@ -7,10 +7,11 @@ FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Patient\Medical
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Patient\Patients.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Prescription\MainTransition.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\DoctorPage.xaml;;
-FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Prescription\Transition\AddPrescription.xaml;;
-FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Prescription\Transition\AddTreatment.xaml;;
+FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml;;
+FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\LoginPage\MainWindow.xaml;;
-FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Billing\BillingUC.xaml;;
+FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Billing\BillingTransition.xaml;;
+FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Billing\Transitions\PatientBills.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Patient\AddPatients.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Patient\PatientDetails.xaml;;
 FC:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\Pages\StaffNurse\Patient\PatientUC.xaml;;

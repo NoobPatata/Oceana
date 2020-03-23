@@ -14,6 +14,8 @@
 
             Case "Billing"
                 GridMain.Children.Clear()
+                ucs = New BillingTransition
+                GridMain.Children.Add(ucs)
 
 
         End Select
