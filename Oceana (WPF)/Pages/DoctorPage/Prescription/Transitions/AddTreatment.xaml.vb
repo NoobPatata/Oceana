@@ -16,6 +16,7 @@ Public Class AddTreatment
         _treatment = Me.Resources("Treatment")
         _newTreatment = Me.Resources("PrescriptionTreatement")
         LoadTreatment()
+
     End Sub
 
     Public Sub LoadTreatment()
@@ -85,27 +86,31 @@ Public Class AddTreatment
 
     'Save the treatment
     Private Sub btnSave_Click(sender As Object, e As RoutedEventArgs) Handles btnSave.Click
-        'If _newTreatment.Count = 0 Then
-        '    msgQ.Enqueue("Please select treatment for the patient!")
-        'End If
+        If _newTreatment.Count = 0 Then
+            msgQ.Enqueue("Please select treatment for the patient!")
 
-        For Each treatment In _newTreatment
-            If gVars.Doctor.InsertIntoPrescriptionDetails(treatment.PrescriptionID, treatment.TreatmentID, treatment.Description) > 0 Then
-            End If
-        Next
+        Else
 
-        Dim prescriptionID As Integer = gVars.Doctor.GetPrescriptionID
-        Dim invoiceID As Integer = gVars.Doctor.GetInvoiceID
+            For Each treatment In _newTreatment
+                If gVars.Doctor.InsertIntoPrescriptionDetails(treatment.PrescriptionID, treatment.TreatmentID, treatment.Description) > 0 Then
+                End If
+            Next
 
-        For Each id As DetailsID In gVars.Doctor.GetDetailsID(prescriptionID)
-            _id.Add(id)
-        Next
+            Dim prescriptionID As Integer = gVars.Doctor.GetPrescriptionID
+            Dim invoiceID As Integer = gVars.Doctor.GetInvoiceID
 
-        For Each ids In _id
-            gVars.Doctor.InsertIntoInvoiceDetails(invoiceID, ids.DID, ids.Price)
-        Next
+            For Each id As DetailsID In gVars.Doctor.GetDetailsID(prescriptionID)
+                _id.Add(id)
+            Next
+
+            For Each ids In _id
+                gVars.Doctor.InsertIntoInvoiceDetails(invoiceID, ids.DID, ids.Price)
+            Next
+
+            DialogHost.CloseDialogCommand.Execute(Nothing, Nothing)
+
+        End If
 
     End Sub
-
 
 End Class

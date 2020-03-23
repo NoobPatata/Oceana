@@ -100,10 +100,10 @@
     <Compile Include="Pages\DoctorPage\Patient\Patients.xaml.vb">
       <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\Transition\AddPrescription.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml.vb">
       <DependentUpon>AddPrescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\Transition\AddTreatment.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml.vb">
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffNurse\Billing\BillingUC.xaml.vb">
@@ -156,11 +156,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\Transition\AddPrescription.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\Transition\AddTreatment.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
