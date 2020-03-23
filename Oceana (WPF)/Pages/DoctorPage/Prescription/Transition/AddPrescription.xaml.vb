@@ -45,7 +45,6 @@
         If gVars.Doctor.InsertNewPrescription(cbbPatient.Text, cbbDoctor.Text) > 0 Then
             If gVars.Doctor.AddDateAndDisease(cbdate.SelectedDate.Value.Date.ToShortDateString, txtSakit.Text) > 0 Then
                 If gVars.Doctor.CreateNewInvoice() > 0 Then
-                    MsgBox("betul")
                 End If
             End If
         End If

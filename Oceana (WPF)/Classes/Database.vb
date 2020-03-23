@@ -425,14 +425,17 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
     'Get the list of details ID in which match a prescription ID
     Public Function GetDetailsID(id As Integer) As List(Of DetailsID)
         Dim newDetailsID As New List(Of DetailsID)
-        Dim getID As String = "Select DetailsID from [Prescription Details] WHERE PrescriptionID = @ID"
+        Dim getID As String = "SELECT [Prescription Details].DetailsID , Treatment.Price 
+FROM [Prescription Details] INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID
+WHERE ((([Prescription Details].PrescriptionID)= @ID))"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(getID, Conn)
             Cmd.Parameters.AddWithValue("@ID", id)
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader
             While reader.Read()
-                newDetailsID.Add(New DetailsID(reader("DetailsID")))
+                newDetailsID.Add(New DetailsID(reader("DetailsID"),
+                                               reader("Price")))
             End While
             Return newDetailsID
 
@@ -441,12 +444,13 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
     End Function
 
     'Insert details into invoice details
-    Public Function InsertIntoInvoiceDetails(IID As Integer, PID As Integer) As Integer
-        Dim insertDetails As String = "INSERT INTO [Invoice Details] ([InvoiceID], [DetailsID]) VALUES (@IID , @PID);"
+    Public Function InsertIntoInvoiceDetails(IID As Integer, PID As Integer, RM As String) As Integer
+        Dim insertDetails As String = "INSERT INTO [Invoice Details] ([InvoiceID], [DetailsID] , [Price] ) VALUES (@IID , @PID , @RM);"
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(insertDetails, Conn)
             Cmd.Parameters.AddWithValue("@IID", IID)
             Cmd.Parameters.AddWithValue("@PID", PID)
+            Cmd.Parameters.AddWithValue("@RM", RM)
             Conn.Open()
             Dim i As Integer
             i = Cmd.ExecuteNonQuery()
