@@ -14,34 +14,37 @@
 
 
     <UserControl.Resources>
-
+        <local:ObservableInvoice x:Key="Invoice"/>
+        <CollectionViewSource x:Key="cvsInvoice" Source="{StaticResource Invoice}"/>
+        <local:ForegroundConverter x:Key="conv"/>
+        <local:ObservableInvoiceDetails x:Key="details"/>
+        <CollectionViewSource x:Key="cvsDetails" Source="{StaticResource details}"/>
     </UserControl.Resources>
-    
+
     <materialDesign:DialogHost Identifier="RootDialog">
 
         <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0" AutoApplyTransitionOrigins="True">
-            
-            <Grid>
-                
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="AUTO"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Margin="20">
-                        <materialDesign:PackIcon Kind="Search" Width="30" Height="30" Margin="15,0,10,0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="txtSearch"  VerticalAlignment="Center"
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <materialDesign:PackIcon Kind="Search" Width="30" Height="30" Margin="15,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSearch"  VerticalAlignment="Center"
                                      Width="250" materialDesign:HintAssist.Hint="SEARCH PATIENT"  FontSize="15"/>
-                        <Button x:Name="btnSearch" Width="100" Content="Search" Margin="100,0" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                          Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
-                    </StackPanel>
-                    
-                    <materialDesign:Snackbar Grid.Row="1" HorizontalAlignment="Stretch" Margin="30,0" x:Name="MySnackbar" MessageQueue="{materialDesign:MessageQueue}" />
-              
+                    <Button x:Name="btnSearch" Width="100" Content="Search" Margin="100,0" Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+                </StackPanel>
+
+                <materialDesign:Snackbar Grid.Row="1" HorizontalAlignment="Stretch" Margin="30,0" x:Name="MySnackbar" MessageQueue="{materialDesign:MessageQueue}" />
+
             </Grid>
 
             <materialDesign:TransitionerSlide >
-                
+
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:SlideWipe Direction="Right"/>
                 </materialDesign:TransitionerSlide.BackwardWipe>
@@ -53,12 +56,14 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
+                    <materialDesign:Snackbar Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="30,0" x:Name="MySnackbarTwo" MessageQueue="{materialDesign:MessageQueue}" />
+
                     <materialDesign:Card Margin="10" Background="White">
 
-                        <ListView Margin="15" Background="#ECEFF1" >
+                        <ListView x:Name="lvInvoices" Style="{StaticResource MaterialDesignCardsListBox}" Margin="15" ItemsSource="{Binding Source={StaticResource cvsInvoice}}" IsSynchronizedWithCurrentItem="True">
 
-                            <ListView.ItemTemplate>
-                                
+                            <ListView.ItemTemplate  >
+
                                 <DataTemplate>
 
                                     <Grid>
@@ -95,13 +100,27 @@
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="3">
-                                            <TextBlock Text="INV0001" VerticalAlignment="Center" FontSize="14" Margin="3,7"/>
-                                            <TextBlock Text="Done" VerticalAlignment="Center" FontSize="14" Margin="3,6.5" />
+                                            <TextBlock Text="{Binding InvoiceID}" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Margin="3,5"/>
+                                            <TextBlock x:Name="txtpayment" Text="{Binding PaymentStatus}" Foreground="{Binding Path=Text, ElementName=txtpayment , Converter={StaticResource conv}}" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Margin="3,7" />
                                         </StackPanel>
 
+                                        <Grid.Style>
+                                            <Style TargetType="{x:Type Grid}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="False">
+                                                        <Setter Property="Background" Value="White"></Setter>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#CFD8DC"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Grid.Style>
+
                                     </Grid>
+
                                 </DataTemplate>
-                          
+
                             </ListView.ItemTemplate>
 
                         </ListView>
@@ -127,8 +146,8 @@
                                           AutoGenerateColumns="False"
                                           materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                                           materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                                          FontSize="18" IsReadOnly="False">
-                                    
+                                          FontSize="18" IsReadOnly="True" ItemsSource="{Binding Source={StaticResource cvsDetails} , UpdateSourceTrigger=PropertyChanged}">
+
                                     <!--Header Style-->
                                     <DataGrid.ColumnHeaderStyle>
                                         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
@@ -141,13 +160,11 @@
                                     <DataGrid.Columns>
                                         <materialDesign:DataGridTextColumn
                                             Header="Treatment Name"
-                                            MaxLength="255" 
-                                            IsReadOnly="True"/>
-                                        <materialDesign:DataGridTextColumn
-                                            Header="Quantity"
-                                            MaxLength="255"/>
+                                            Binding="{Binding Nama}"
+                                            MaxLength="255" />
                                         <materialDesign:DataGridTextColumn
                                             Header="Price"
+                                            Binding="{Binding Price}"
                                             MaxLength="255"/>
                                     </DataGrid.Columns>
 
@@ -175,39 +192,51 @@
                                         <RowDefinition Height="AUTO"/>
                                     </Grid.RowDefinitions>
 
-
+                                    <!--Column 1 items-->
                                     <TextBlock Text="Nurse Incharge" Margin="0,10,0,5"/>
                                     <TextBlock Text="Consultation Fee"  Margin="0,5" Grid.Row="1" />
                                     <TextBlock Text="Grand Total" Margin="0,5" Grid.Row="2"/>
                                     <TextBlock Text="Amount Paid" Margin="0,5" Grid.Row="3"/>
                                     <TextBlock Text="Balance" Margin="0,5" Grid.Row="4"/>
 
+                                    <!--Column 2 items-->
                                     <TextBlock Text=":" Margin="5,10,0,5" Grid.Column="1"/>
                                     <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="1"/>
                                     <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="2"/>
                                     <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="3"/>
                                     <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="4"/>
 
-                                    <TextBox Grid.ColumnSpan="2" Text="SUPER BIG TEST" Margin="0,6" Grid.Column="2" Width="200"/>
+                                    <!--Column 3 items-->
+                                    <TextBox Grid.ColumnSpan="2" Text="{Binding Source={StaticResource cvsInvoice}, Path=StaffFN}" Margin="0,6" Grid.Column="2" Width="200"/>
                                     <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="1"/>
                                     <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="2"/>
                                     <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="3"/>
                                     <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="4"/>
 
+                                    <!--Column 4 items-->
                                     <TextBlock Text="30" Margin="0,7,0,5" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="1"/>
-                                    <TextBlock Text="150" Margin="0,7,0,5" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="2"/>
-                                    <TextBox Text="999.99" Margin="0,2,0,5" Width="150" HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="3"/>
-                                    <TextBlock Text="700" Margin="0,7,0,5"  HorizontalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
+                                    <TextBlock x:Name="txtAmount" Text="{Binding Source={StaticResource cvsInvoice} , Path=Amount}" Margin="0,7,0,5" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="2"/>
+                                    <TextBox x:Name="txtPayment"  Margin="0,2,0,5" Width="150" HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="3">
+                                        <TextBox.Text>
+                                            <Binding Source="{StaticResource cvsInvoice}" Path="Paid" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <local:InputValidationRule  ErrorMessage="Please input a valid amount!" />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock x:Name="txtBalance" Text="{Binding Source={StaticResource cvsInvoice}, Path=Balance}" Margin="0,7,0,5"  HorizontalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
 
 
                                     <Button Grid.Row="5" Grid.Column="3" Margin="10"
                                             Style="{StaticResource MaterialDesignRaisedButton}"
                                             Content="CHECKOUT" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"/>
 
+
                                 </Grid>
 
                             </Grid>
-                            
+
                         </Grid>
 
                     </materialDesign:Card>
@@ -217,59 +246,7 @@
             </materialDesign:TransitionerSlide>
 
         </materialDesign:Transitioner>
-        
+
     </materialDesign:DialogHost>
 
 </UserControl>
-    
-    
-<!--<Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <materialDesign:Card Margin="10" Background="#ECEFF1">
-                        <ListView Margin="15" ItemsSource="{Binding Source={StaticResource cvsDoctor}}" IsSynchronizedWithCurrentItem="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="AUTO"/>
-                                        <ColumnDefinition Width="AUTO"/>
-                                        <ColumnDefinition Width="AUTO"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <StackPanel>
-
-
-
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center"/>
-                                            <Rectangle Width="2" Fill="Black" Margin="5,0"/>
-                                            <TextBlock Text="Invoice ID" VerticalAlignment="Center" FontSize="14"/>
-                                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,0"/>
-                                            <TextBlock Text="{Binding FirstName}" VerticalAlignment="Center" FontSize="14" />
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                            <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center"/>
-                                            <Rectangle Width="2" Fill="Black" Margin="5,0"/>
-                                            <TextBlock Text="Payment Status" VerticalAlignment="Center" FontSize="14"/>
-                                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,0"/>
-                                            <TextBlock Text="Done" VerticalAlignment="Center" FontSize="14" />
-                                        </StackPanel>
-
-                                    </StackPanel>
-
-                                </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                          
-                        </ListView>
-                    </materialDesign:Card>
-
-                    <TextBlock Grid.Column="1" Text="{Binding Source={StaticResource cvsDoctor}, Path=PatientID} "/>
-
-                </Grid>-->

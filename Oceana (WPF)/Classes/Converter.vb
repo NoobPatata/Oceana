@@ -15,6 +15,7 @@ Public Class Converter
         Return users
     End Function
 
+    'convert selected items in datagrid to list of patient
     Public Shared Function SelectedItemsToListOfPatient(selectedItems As IList) As List(Of PatientList)
         Dim patients As New List(Of PatientList)
         For Each patient As PatientList In selectedItems
@@ -33,7 +34,7 @@ Public Class Converter
         Return patients
     End Function
 
-
+    'convert selected items in datagrid to list of prescription
     Public Shared Function SelectedItemsToListOfPrescription(selectedItems As IList) As List(Of PrescriptionDetails)
         Dim prescriptions As New List(Of PrescriptionDetails)
         For Each prescription As PrescriptionDetails In selectedItems
@@ -42,6 +43,32 @@ Public Class Converter
         Return prescriptions
     End Function
 
+    'convert selected items in datagrid to list of invoice
+    Public Shared Function SelectedItemToListOfInvoice(selectedItems As IList) As List(Of Invoice)
+        Dim invoices As New List(Of Invoice)
+        For Each invoice As Invoice In selectedItems
+            invoices.Add(New Invoice(invoice.InvoiceID, invoice.StaffFN, invoice.StaffLN, invoice.Amount, invoice.Paid, invoice.Balance))
+        Next
+        Return invoices
+    End Function
+
 
 End Class
 
+'To convert the foreground color of the payment status
+Public Class ForegroundConverter
+
+    Implements IValueConverter
+
+    Private Function IValueConverter_Convert(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.Convert
+        If CStr(value) = "Paid" Then
+            Return "#00E676"
+        ElseIf CStr(value) = "Overdue" Then
+            Return "Red"
+        End If
+    End Function
+
+    Private Function IValueConverter_ConvertBack(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.ConvertBack
+        Throw New NotImplementedException()
+    End Function
+End Class

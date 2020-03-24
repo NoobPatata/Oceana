@@ -107,10 +107,13 @@ Public Class AddTreatment
                 gVars.Doctor.InsertIntoInvoiceDetails(invoiceID, ids.DID, ids.Price)
             Next
 
+            gVars.Doctor.InsertTotalPrice(gVars.Doctor.GetTotalPrice + 30)
+
             DialogHost.CloseDialogCommand.Execute(Nothing, Nothing)
 
         End If
 
     End Sub
+
 
 End Class

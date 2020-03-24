@@ -459,6 +459,34 @@ WHERE ((([Prescription Details].PrescriptionID)= @ID))"
 
     End Function
 
+    'Get the total price of the treatment
+    Public Function GetTotalPrice()
+        Dim value As Integer
+        Dim getID As String = "SELECT Sum(Price) 
+FROM [Invoice Details]
+WHERE ((([Invoice Details].[InvoiceID])=(Select MAX([Invoice ID]) From Invoice)));
+"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+        End Using
+        Return value
+    End Function
+
+    'Insert the total amount into invoice
+    Public Function InsertTotalPrice(total As Integer)
+        Dim value As Integer
+        Dim getID As String = "UPDATE Invoice Set Amount = @total WHERE [Invoice ID] = (Select MAX([Invoice ID]) From Invoice)"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Cmd.Parameters.AddWithValue("@total", total)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+        End Using
+        Return value
+    End Function
+
 End Class
 
 
@@ -553,6 +581,73 @@ Public Class StaffNurseDB
             End While
             Return Patients
         End Using
+    End Function
+
+    'Search patient invoice by ID
+    Public Function GetInvoiceByID(nama As Integer)
+        Dim invoice As New List(Of Invoice)
+        Dim getInvoice As String = "SELECT Invoice.[Invoice ID], Nurse.FirstName, Nurse.LastName, Invoice.Amount, Invoice.Paid , Invoice.Balance
+FROM (Nurse INNER JOIN Invoice ON Nurse.[Nurse ID] = Invoice.StaffID) INNER JOIN Patient ON Invoice.PatientID = Patient.PatientID
+WHERE ((([Patient].[PatientID])= @ID));
+"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getInvoice, Conn)
+            Cmd.Parameters.AddWithValue("@ID", nama)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                invoice.Add(New Invoice(reader("Invoice ID"),
+                    reader("FirstName").ToString,
+                    reader("LastName").ToString,
+                    reader("Amount"),
+                    reader("Paid").ToString,
+                    reader("Balance").ToString))
+            End While
+            Return invoice
+        End Using
+
+    End Function
+
+    'Search patient invoice by name
+    Public Function GetInvoiceByName(nama As String)
+        Dim invoice As New List(Of Invoice)
+        Dim getInvoice As String = "SELECT Invoice.[Invoice ID], Nurse.FirstName, Nurse.LastName, Invoice.Amount, Invoice.Paid , Invoice.Balance
+FROM (Nurse INNER JOIN Invoice ON Nurse.[Nurse ID] = Invoice.StaffID) INNER JOIN Patient ON Invoice.PatientID = Patient.PatientID
+WHERE ((([Patient].[FirstName])= @FN) OR Patient.LastName = @LN);
+"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getInvoice, Conn)
+            Cmd.Parameters.AddWithValue("@FN", nama)
+            Cmd.Parameters.AddWithValue("@LN", nama)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                invoice.Add(New Invoice(reader("Invoice ID"),
+                    reader("FirstName").ToString,
+                    reader("LastName").ToString,
+                    reader("Amount"),
+                    reader("Paid").ToString,
+                    reader("Balance").ToString))
+            End While
+            Return invoice
+        End Using
+    End Function
+
+    'Get the details of invoice
+    Public Function GetInvoiceDetails(id As Integer)
+        Dim details As New List(Of InvoiceDetails)
+        Dim GetDetails As String = "SELECT Treatment.Name, [Invoice Details].Price
+FROM ([Prescription Details] INNER JOIN [Invoice Details] ON [Prescription Details].DetailsID = [Invoice Details].DetailsID) INNER JOIN Treatment ON [Prescription Details].TreatmentID = Treatment.TreatmentID WHERE [Invoice Details].[InvoiceID] = @ID;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetDetails, Conn)
+            Cmd.Parameters.AddWithValue("@ID", id)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader
+            While reader.Read()
+                details.Add(New InvoiceDetails(reader("Name"), reader("Price")))
+            End While
+        End Using
+        Return details
     End Function
 
 End Class

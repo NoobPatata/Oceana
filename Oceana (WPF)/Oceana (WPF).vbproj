@@ -86,6 +86,9 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Converter.vb" />
     <Compile Include="Classes\Global.vb" />
+    <Compile Include="Classes\Validation.vb" />
+    <Compile Include="Model\Invoice.vb" />
+    <Compile Include="Model\InvoiceDetails.vb" />
     <Compile Include="Pages\StaffNurse\Billing\Transitions\PatientBills.xaml.vb">
       <DependentUpon>PatientBills.xaml</DependentUpon>
     </Compile>
