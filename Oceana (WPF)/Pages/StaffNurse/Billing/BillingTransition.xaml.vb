@@ -89,4 +89,31 @@ Public Class BillingTransition
         End If
     End Sub
 
+    'update the data in the invoice
+    Private Async Sub btnCheckout_Click(sender As Object, e As RoutedEventArgs) Handles btnCheckout.Click
+
+        Dim invoice As List(Of Invoice) = Converter.SelectedItemToListOfInvoice(lvInvoices.SelectedItems)
+
+        If txtAmount.Text > txtPayment.Text Then
+            msgQ2.Enqueue("Please make sure that the payment is done!")
+        Else
+
+            For Each details In invoice
+
+                Dim result As Boolean = Await DialogHost.Show(UpdateInvoiceDialog, "RootDialog")
+                If result = True Then
+
+                    If gVars.Nurse.UpdateInvoice(txtPayment.Text, txtBalance.Text, details.InvoiceID) > 0 Then
+                        msgQ2.Enqueue("Succesfully update the invoice with the ID " + details.InvoiceID.ToString)
+                    Else
+                        msgQ2.Enqueue("Failed to update the invoice with the ID " + details.InvoiceID.ToString)
+                    End If
+
+                End If
+
+            Next
+
+        End If
+    End Sub
+
 End Class

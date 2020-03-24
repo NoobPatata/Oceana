@@ -60,4 +60,14 @@ Class MainWindow
             btnLogin_Click(sender, Nothing)
         End If
     End Sub
+
+    Private Sub MainWindow_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Me.MouseDown
+        If e.ChangedButton = MouseButton.Left Then
+            Me.DragMove()
+        End If
+    End Sub
+
+    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+        Me.Close()
+    End Sub
 End Class

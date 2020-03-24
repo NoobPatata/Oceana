@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+
 Public Class database
 
     Private Shared dbProvider As String = "PROVIDER= Microsoft.JET.OLEDB.4.0;"
@@ -151,6 +152,38 @@ Public Class AdminDB
             Dim i = cmd.ExecuteNonQuery()
             conn.Close()
             Return i
+        End Using
+    End Function
+
+    'To check if the new user have same email as existing user
+    Public Function GetUserByEmail(email As String) As LoginUsers
+        Using SqlConn As New OleDbConnection(database.ConnectionString)
+            Dim getUserQuery As String = "SELECT * FROM LoginUser WHERE Email = @email"
+            Dim SqlCmd As New OleDbCommand(getUserQuery, SqlConn)
+            SqlCmd.Parameters.AddWithValue("@email", email)
+            SqlConn.Open()
+            Dim reader As OleDbDataReader = SqlCmd.ExecuteReader()
+            Dim selectedUser As LoginUsers = Nothing
+            While reader.Read()
+                selectedUser = New LoginUsers(reader("UserId"), reader("FirstName"), reader("LastName"), reader("ContactNumber").ToString, reader("Email"), reader("Username"), reader("Password"), reader("UserGroup"))
+            End While
+            Return selectedUser
+        End Using
+    End Function
+
+    'To check if new user have the same username as existing user
+    Public Function GetUserbyUsername(username As String) As LoginUsers
+        Using SqlConn As New OleDbConnection(database.ConnectionString)
+            Dim getUserQuery As String = "SELECT * FROM LoginUser WHERE Username = @username"
+            Dim SqlCmd As New OleDbCommand(getUserQuery, SqlConn)
+            SqlCmd.Parameters.AddWithValue("@username", username)
+            SqlConn.Open()
+            Dim reader As OleDbDataReader = SqlCmd.ExecuteReader()
+            Dim selectedUser As LoginUsers = Nothing
+            While reader.Read()
+                selectedUser = New LoginUsers(reader("UserId"), reader("FirstName"), reader("LastName"), reader("ContactNumber").ToString, reader("Email"), reader("Username"), reader("Password"), reader("UserGroup"))
+            End While
+            Return selectedUser
         End Using
     End Function
 
@@ -489,7 +522,6 @@ WHERE ((([Invoice Details].[InvoiceID])=(Select MAX([Invoice ID]) From Invoice))
 
 End Class
 
-
 Public Class StaffNurseDB
 
     'Create new patient
@@ -649,5 +681,102 @@ FROM ([Prescription Details] INNER JOIN [Invoice Details] ON [Prescription Detai
         End Using
         Return details
     End Function
+
+    'Update the payment information
+    Public Function UpdateInvoice(paid As String, balance As String, id As String) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim UpdatePayment As String =
+                        "UPDATE INVOICE SET Paid = @paid , Balance = @balance Where [Invoice ID] = @ID;"
+            Dim cmd As New OleDbCommand(UpdatePayment, conn)
+            cmd.Parameters.AddWithValue("@paid", paid)
+            cmd.Parameters.AddWithValue("@balance", balance)
+            cmd.Parameters.AddWithValue("@ID", id)
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+
+    End Function
+
+    'To check if the patient have same email as existing patient
+    Public Function GetPatientByEmail(email As String) As PatientList
+        Using SqlConn As New OleDbConnection(database.ConnectionString)
+            Dim getPatientQuery As String = "SELECT * FROM LoginUser WHERE Email = @email"
+            Dim SqlCmd As New OleDbCommand(getPatientQuery, SqlConn)
+            SqlCmd.Parameters.AddWithValue("@email", email)
+            SqlConn.Open()
+            Dim reader As OleDbDataReader = SqlCmd.ExecuteReader()
+            Dim selectedpatient As PatientList = Nothing
+            While reader.Read()
+                selectedpatient = New PatientList(reader("PatientID"),
+                    reader("FirstName"),
+                    reader("LastName"),
+                    reader("IdentificationNumber"),
+                    reader("CurrentAddress"),
+                    reader("ContactNumber"),
+                    reader("Email"),
+                    reader("Height"),
+                    reader("Weight"),
+                    reader("BloodType"),
+                    reader("Allergies"))
+            End While
+            Return selectedpatient
+        End Using
+    End Function
+
+    'To check if new have the same contact number as existing patient
+    Public Function GetPatientByContactNumber(number As String) As PatientList
+        Using SqlConn As New OleDbConnection(database.ConnectionString)
+            Dim getPatientQuery As String = "SELECT * FROM Patient WHERE ContactNumber = @number"
+            Dim SqlCmd As New OleDbCommand(getPatientQuery, SqlConn)
+            SqlCmd.Parameters.AddWithValue("@number", number)
+            SqlConn.Open()
+            Dim reader As OleDbDataReader = SqlCmd.ExecuteReader()
+            Dim selectedpatient As PatientList = Nothing
+            While reader.Read()
+                selectedpatient = New PatientList(reader("PatientID"),
+                    reader("FirstName"),
+                    reader("LastName"),
+                    reader("IdentificationNumber"),
+                    reader("CurrentAddress"),
+                    reader("ContactNumber"),
+                    reader("Email"),
+                    reader("Height"),
+                    reader("Weight"),
+                    reader("BloodType"),
+                    reader("Allergies"))
+            End While
+            Return selectedpatient
+        End Using
+    End Function
+
+    'To check if new have the same identification as existing patient
+    Public Function GetPatientByIC(ic As String) As PatientList
+        Using SqlConn As New OleDbConnection(database.ConnectionString)
+            Dim getPatientQuery As String = "SELECT * FROM Patient WHERE IdentificationNumber = @IC"
+            Dim SqlCmd As New OleDbCommand(getPatientQuery, SqlConn)
+            SqlCmd.Parameters.AddWithValue("@IC", ic)
+            SqlConn.Open()
+            Dim reader As OleDbDataReader = SqlCmd.ExecuteReader()
+            Dim selectedpatient As PatientList = Nothing
+            While reader.Read()
+                selectedpatient = New PatientList(reader("PatientID"),
+                    reader("FirstName"),
+                    reader("LastName"),
+                    reader("IdentificationNumber"),
+                    reader("CurrentAddress"),
+                    reader("ContactNumber"),
+                    reader("Email"),
+                    reader("Height"),
+                    reader("Weight"),
+                    reader("BloodType"),
+                    reader("Allergies"))
+            End While
+            Return selectedpatient
+        End Using
+    End Function
+
 
 End Class

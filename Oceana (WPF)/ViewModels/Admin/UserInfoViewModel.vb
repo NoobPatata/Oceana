@@ -1,6 +1,6 @@
 ﻿Public Class UserInfoViewModel
 
-    Inherits PropertyChanged
+    Inherits ValidatableObservableObject
 
     Public Property Info As LoginUsers
     Private _FN As String
@@ -60,5 +60,53 @@
             OnPropertyChanged(EM)
         End Set
     End Property
+
+    Private _allFieldsFilled As Boolean
+    Public ReadOnly Property AllFieldsFilled() As Boolean
+        Get
+            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(PS) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(PS) Then
+                Return False
+            Else
+                If HasErrors Then
+                    Return False
+                Else
+                    Return True
+                End If
+            End If
+        End Get
+    End Property
+
+    Public Overrides Sub Validation(propName As String, ByRef propValue As String, errContent As String, type As String)
+        Dim errorList As List(Of String)
+        If PropertyErrorsDictionary.TryGetValue(propName, errorList) = False Then
+            errorList = New List(Of String)
+        Else
+            errorList.Clear()
+        End If
+
+        Select Case type
+            Case "Email"
+                If (String.IsNullOrWhiteSpace(EM)) Then
+                    errorList.Add("Email cannot be empty!")
+                ElseIf (gVars.Admin.GetUserByEmail(EM) IsNot Nothing) Then
+                    errorList.Add("User with same email already exist in database!")
+                End If
+
+            Case "Username"
+                If (String.IsNullOrWhiteSpace(UN)) Then
+                    errorList.Add("Username cannot be empty!")
+                ElseIf (gVars.Admin.GetUserbyUsername(UN) IsNot Nothing) Then
+                    errorList.Add("User with the same username already exist in database!")
+                End If
+
+            Case Else
+
+
+        End Select
+
+        PropertyErrorsDictionary(propName) = errorList
+        OnErrorsChanged(propName)
+        OnPropertyChanged(NameOf(AllFieldsFilled))
+    End Sub
 
 End Class

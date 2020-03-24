@@ -54,16 +54,6 @@ Oceana (WPF)
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="T:Oceana__WPF_.PatientBills">
-<summary>
-PatientBills
-</summary>
-</member>
-<member name="M:Oceana__WPF_.PatientBills.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
-</member>
 <member name="T:Oceana__WPF_.MedicalRecord">
 <summary>
 MedicalRecord

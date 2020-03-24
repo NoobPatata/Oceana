@@ -55,6 +55,23 @@ Public Class Converter
 
 End Class
 
+'TO convert the ui of password
+Class PasswordTextConverter
+    Implements IValueConverter
+    Public Function Convert(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.Convert
+        Dim passwordString As String = value.ToString()
+        Dim returnString As String = ""
+        For i = 1 To passwordString.Length
+            returnString += "*"
+        Next
+        Return returnString
+    End Function
+
+    Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.ConvertBack
+        Throw New NotImplementedException()
+    End Function
+End Class
+
 'To convert the foreground color of the payment status
 Public Class ForegroundConverter
 

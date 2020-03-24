@@ -20,4 +20,25 @@
     Private Sub cbbUserGroup_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbbUserGroup.SelectionChanged
         cbbUserGroup.SelectedItem.ToString()
     End Sub
+
+    Private Sub ValidateEmail()
+        Task.Run(Sub() UInfo.Validation(NameOf(UInfo.EM), UInfo.EM, "", "Email"))
+    End Sub
+
+    Private Sub ValidateUsername()
+        Task.Run(Sub() UInfo.Validation(NameOf(UInfo.UN), UInfo.UN, "", "Username"))
+    End Sub
+
+    Private Sub txtFields_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtFirstname.TextChanged, txtLastname.TextChanged, txtPassword.TextChanged
+        UInfo.OnPropertyChanged("AllFieldsFilled")
+    End Sub
+    Private Sub txtEmail_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtEmail.TextChanged
+        ValidateEmail()
+    End Sub
+
+    Private Sub txtUsername_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtUsername.TextChanged
+        ValidateUsername()
+    End Sub
+
+
 End Class

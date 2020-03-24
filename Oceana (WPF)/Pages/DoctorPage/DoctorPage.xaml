@@ -36,12 +36,6 @@
                 </ListViewItem>
 
                 <!--Prescription Button-->
-                <ListViewItem x:Name="Prescription" Background="#1565C0" Height="60" TabIndex="2" >
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="FileDocumentBoxesOutline" Foreground="White" Height="20" Width="20" VerticalAlignment="Center" Margin="10,0"/>
-                        <TextBlock Grid.Column="1" Text="PRESCRIPTION" VerticalAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold"  Margin="5,0"/>
-                    </StackPanel>
-                </ListViewItem>
             </ListView>
         </StackPanel>
 

@@ -23,4 +23,24 @@ Public Class AddUser
         cbbUserGroup.SelectedItem.ToString()
     End Sub
 
+
+    Private Sub ValidateEmail()
+        Task.Run(Sub() AddVM.Validation(NameOf(AddVM.EM), AddVM.EM, "", "Email"))
+    End Sub
+
+    Private Sub ValidateUsername()
+        Task.Run(Sub() AddVM.Validation(NameOf(AddVM.UN), AddVM.UN, "", "Username"))
+    End Sub
+
+    Private Sub txtFields_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtFirstname.TextChanged, txtLastname.TextChanged, txtPassword.TextChanged
+        AddVM.OnPropertyChanged("AllFieldsFilled")
+    End Sub
+    Private Sub txtEmail_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtEmail.TextChanged
+        ValidateEmail()
+    End Sub
+
+    Private Sub txtUsername_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtUsername.TextChanged
+        ValidateUsername()
+    End Sub
+
 End Class

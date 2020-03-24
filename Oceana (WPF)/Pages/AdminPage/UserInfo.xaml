@@ -19,22 +19,22 @@
         <StackPanel>
             <TextBlock Margin="0,15" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="User Details" VerticalAlignment="Top" TextAlignment="Center"/>
             <Label Margin="25,5" Content="User ID"/>
-            <TextBox Text="{Binding Info.UserID}" Margin="25,5" x:Name="txtUserId"></TextBox>
+            <TextBox IsEnabled="False" IsReadOnly="True" Text="{Binding Info.UserID}" Margin="25,5" x:Name="txtUserId"></TextBox>
             <Label Margin="25,5" Content="Firstname"/>
-            <TextBox Text="{Binding FN}" Margin="25,5" x:Name="txtFirstname"></TextBox>
+            <TextBox Text="{Binding FN , UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtFirstname"></TextBox>
             <Label Margin="25,5" Content="Lastname"/>
-            <TextBox Text="{Binding LN}" Margin="25,5" x:Name="txtLastname"></TextBox>
+            <TextBox Text="{Binding LN, UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtLastname"></TextBox>
             <Label Margin="25,5" Content="Username"/>
-            <TextBox Text="{Binding UN}" Margin="25,5" x:Name="txtUsername"></TextBox>
+            <TextBox Text="{Binding UN, UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtUsername"></TextBox>
             <Label Margin="25,5" Content="Password"/>
-            <TextBox Text="{Binding PS}" Margin="25,5" x:Name="txtPassword"></TextBox>
+            <TextBox Text="{Binding PS, UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtPassword"></TextBox>
             <Label Margin="25,5" Content="Email"/>
-            <TextBox Text="{Binding EM}" Margin="25,5" x:Name="txtEmail"></TextBox>
+            <TextBox Text="{Binding EM, UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtEmail"></TextBox>
             <Label Margin="25,5" Content="UserGroup"/>
-            <ComboBox SelectedItem="{Binding Info.UserGroup}" Margin="25,5" x:Name="cbbUserGroup">
+            <ComboBox IsReadOnly="True" IsEnabled="False" SelectedItem="{Binding Info.UserGroup}" Margin="25,5" x:Name="cbbUserGroup">
             </ComboBox>
             <StackPanel Margin="0,5,0,10"  Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True" Width="80" Height="40" Margin="25,5" Content="Save"/>
+                <Button IsEnabled="{Binding AllFieldsFilled}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True" Width="80" Height="40" Margin="25,5" Content="Save"/>
                 <Button  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="False" Width="80" Height="40" Margin="25,5" Content="Cancel"/>
             </StackPanel>
         </StackPanel>

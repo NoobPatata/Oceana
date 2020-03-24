@@ -86,12 +86,10 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Converter.vb" />
     <Compile Include="Classes\Global.vb" />
+    <Compile Include="Classes\ValidatableObservableObject.vb" />
     <Compile Include="Classes\Validation.vb" />
     <Compile Include="Model\Invoice.vb" />
     <Compile Include="Model\InvoiceDetails.vb" />
-    <Compile Include="Pages\StaffNurse\Billing\Transitions\PatientBills.xaml.vb">
-      <DependentUpon>PatientBills.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Doctor\DetailsID.vb" />
     <Compile Include="Model\Doctor.vb" />
     <Compile Include="Model\MedicalRecordDetails.vb" />
@@ -106,10 +104,10 @@
     <Compile Include="Pages\DoctorPage\Patient\Patients.xaml.vb">
       <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\AddPrescription.xaml.vb">
       <DependentUpon>AddPrescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml.vb">
+    <Compile Include="Pages\DoctorPage\Prescription\AddTreatment.xaml.vb">
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffNurse\Billing\BillingTransition.xaml.vb">
@@ -162,11 +160,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\Transitions\AddPrescription.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\AddPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DoctorPage\Prescription\Transitions\AddTreatment.xaml">
+    <Page Include="Pages\DoctorPage\Prescription\AddTreatment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,10 +197,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\StaffNurse\Billing\BillingTransition.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\StaffNurse\Billing\Transitions\PatientBills.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

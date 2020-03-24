@@ -1,5 +1,5 @@
 ﻿Public Class PatientInfoViewModel
-    Inherits PropertyChanged
+    Inherits ValidatableObservableObject
 
     Public Property EPatient As PatientList
     Private _FN As String
@@ -111,4 +111,60 @@
             OnPropertyChanged(AL)
         End Set
     End Property
+
+    Private _allFieldsFilled As Boolean
+    Public ReadOnly Property AllFieldsFilled() As Boolean
+        Get
+            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(ID) Or String.IsNullOrEmpty(AD) Or String.IsNullOrEmpty(CN) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(CM) Or String.IsNullOrEmpty(KG) Or String.IsNullOrEmpty(BT) Then
+                Return False
+            Else
+                If HasErrors Then
+                    Return False
+                Else
+                    Return True
+                End If
+            End If
+        End Get
+    End Property
+
+    Public Overrides Sub Validation(propName As String, ByRef propValue As String, errContent As String, type As String)
+        Dim errorList As List(Of String)
+        If PropertyErrorsDictionary.TryGetValue(propName, errorList) = False Then
+            errorList = New List(Of String)
+        Else
+            errorList.Clear()
+        End If
+
+        Select Case type
+
+            Case "Email"
+                If (String.IsNullOrWhiteSpace(EM)) Then
+                    errorList.Add("Email cannot be empty!")
+                ElseIf (gVars.Nurse.GetPatientByEmail(EM) IsNot Nothing) Then
+                    errorList.Add("Patient with same email already exist in database!")
+                End If
+
+            Case "ContactNumber"
+                If (String.IsNullOrWhiteSpace(CN)) Then
+                    errorList.Add("Contact cannot be empty!")
+                ElseIf (gVars.Nurse.GetPatientByContactNumber(CN) IsNot Nothing) Then
+                    errorList.Add("Patient with the same contact number already exist in database!")
+                End If
+
+            Case "Identification"
+                If (String.IsNullOrWhiteSpace(ID)) Then
+                    errorList.Add("Identification cannot be empty!")
+                ElseIf (gVars.Nurse.GetPatientByIC(ID) IsNot Nothing) Then
+                    errorList.Add("Patient with the same identification number already exist in database!")
+                End If
+
+            Case Else
+
+
+        End Select
+
+        PropertyErrorsDictionary(propName) = errorList
+        OnErrorsChanged(propName)
+        OnPropertyChanged(NameOf(AllFieldsFilled))
+    End Sub
 End Class

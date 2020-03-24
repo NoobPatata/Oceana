@@ -12,6 +12,7 @@
         <local:ObserveUser x:Key="users"/>
         <CollectionViewSource x:Key="cvsUsers" Source="{StaticResource users}" 
                               Filter="CollectionViewSource_Filter"/>
+        <local:PasswordTextConverter x:Key="PasswordTextConverter"/>
     </Window.Resources>
 
 
@@ -219,11 +220,14 @@
                          Header="Username"
                             Binding="{Binding Username}"
                             MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
-                            Header="Password"
-                            Binding="{Binding Password}"
-                            MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
+                            <DataGridTemplateColumn Header="Password">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Password, Converter={StaticResource PasswordTextConverter}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <materialDesign:DataGridTextColumn
                             Header="Email"
                             Binding="{Binding Email}"
                             MaxLength="255"/>
