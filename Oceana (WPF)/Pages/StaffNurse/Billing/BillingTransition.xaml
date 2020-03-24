@@ -45,7 +45,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:SlideWipe Direction="Right"/>
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                     
+
                 <Grid>
 
                     <Grid.ColumnDefinitions>
@@ -57,49 +57,52 @@
 
                         <ListView Margin="15" Background="#ECEFF1" >
 
-                            <ListViewItem>
+                            <ListView.ItemTemplate>
+                                
+                                <DataTemplate>
 
-                                <Grid>
+                                    <Grid>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="AUTO"/>
-                                        <ColumnDefinition Width="AUTO"/>
-                                        <ColumnDefinition Width="AUTO"/>
-                                        <ColumnDefinition Width="AUTO"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="AUTO"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <StackPanel>
+                                        <StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" Margin="5">
-                                            <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center" />
-                                            <Rectangle Width="2" Fill="Black" />
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center" />
+                                                <Rectangle Width="2" Fill="Black" />
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center" />
+                                                <Rectangle Width="2" Fill="Black" />
+                                            </StackPanel>
+
                                         </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" Margin="5">
-                                            <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center" />
-                                            <Rectangle Width="2" Fill="Black" />
+                                        <StackPanel Grid.Column="1" >
+                                            <TextBlock Text="Invoice ID" VerticalAlignment="Center" FontSize="14" Margin="3,7"/>
+                                            <TextBlock Text="Payment Status" VerticalAlignment="Center" FontSize="14" Margin="3,6"/>
                                         </StackPanel>
 
-                                    </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,6"/>
+                                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,8"/>
+                                        </StackPanel>
 
-                                    <StackPanel Grid.Column="1" >
-                                        <TextBlock Text="Invoice ID" VerticalAlignment="Center" FontSize="14" Margin="3,7"/>
-                                        <TextBlock Text="Payment Status" VerticalAlignment="Center" FontSize="14" Margin="3,6"/>
-                                    </StackPanel>
+                                        <StackPanel Grid.Column="3">
+                                            <TextBlock Text="INV0001" VerticalAlignment="Center" FontSize="14" Margin="3,7"/>
+                                            <TextBlock Text="Done" VerticalAlignment="Center" FontSize="14" Margin="3,6.5" />
+                                        </StackPanel>
 
-                                    <StackPanel Grid.Column="2">
-                                        <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,6"/>
-                                        <TextBlock Text=":" VerticalAlignment="Center" FontSize="14" Margin="5,8"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="3">
-                                        <TextBlock Text="INV0001" VerticalAlignment="Center" FontSize="14" Margin="3,7"/>
-                                        <TextBlock Text="Done" VerticalAlignment="Center" FontSize="14" Margin="3,6.5" />
-                                    </StackPanel>
-
-                                </Grid>
-
-                            </ListViewItem>
+                                    </Grid>
+                                </DataTemplate>
+                          
+                            </ListView.ItemTemplate>
 
                         </ListView>
 
@@ -111,21 +114,21 @@
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*"/>
-                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1.5*"/>
                             </Grid.RowDefinitions>
 
                             <materialDesign:Card Background="#ECEFF1" >
 
                                 <DataGrid ColumnWidth="*" x:Name="dgTreatment"  
-                                  CanUserSortColumns="True"
-                                  SelectionMode="Extended"
-                                  CanUserAddRows="False"
-                                  CanUserReorderColumns="False"
-                                  AutoGenerateColumns="False"
-                                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                                  materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                                  FontSize="18" IsReadOnly="False">
-
+                                          CanUserSortColumns="True"
+                                          SelectionMode="Extended"
+                                          CanUserAddRows="False"
+                                          CanUserReorderColumns="False"
+                                          AutoGenerateColumns="False"
+                                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                                          materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                                          FontSize="18" IsReadOnly="False">
+                                    
                                     <!--Header Style-->
                                     <DataGrid.ColumnHeaderStyle>
                                         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
@@ -137,15 +140,15 @@
 
                                     <DataGrid.Columns>
                                         <materialDesign:DataGridTextColumn
-                                    Header="Treatment Name"
-                                    MaxLength="255" 
-                                    IsReadOnly="True"/>
+                                            Header="Treatment Name"
+                                            MaxLength="255" 
+                                            IsReadOnly="True"/>
                                         <materialDesign:DataGridTextColumn
-                                    Header="Quantity"
-                                    MaxLength="255"/>
+                                            Header="Quantity"
+                                            MaxLength="255"/>
                                         <materialDesign:DataGridTextColumn
-                                    Header="Price"
-                                    MaxLength="255"/>
+                                            Header="Price"
+                                            MaxLength="255"/>
                                     </DataGrid.Columns>
 
                                 </DataGrid>
@@ -154,55 +157,56 @@
 
                             <Grid Grid.Row="1" Margin="50,20,50,0" HorizontalAlignment="Right" >
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="AUTO"/>
-                                    <ColumnDefinition Width="AUTO"/>
-                                    <ColumnDefinition Width="AUTO"/>
-                                    <ColumnDefinition Width="AUTO"/>
-                                </Grid.ColumnDefinitions>
+                                <Grid>
 
-                                <StackPanel>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="AUTO"/>
+                                        <ColumnDefinition Width="AUTO"/>
+                                        <ColumnDefinition Width="AUTO"/>
+                                        <ColumnDefinition Width="AUTO"/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <TextBlock Text="Consultation Fee" Margin="0,10,0,5"/>
-                                    <TextBlock Text="Grand Total" Margin="0,5"/>
-                                    <TextBlock Text="Amount Paid" Margin="0,5"/>
-                                    <TextBlock Text="Balance" Margin="0,5"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="AUTO"/>
+                                    </Grid.RowDefinitions>
 
-                                </StackPanel>
 
-                                <StackPanel Grid.Column="1" Margin="10,0">
+                                    <TextBlock Text="Nurse Incharge" Margin="0,10,0,5"/>
+                                    <TextBlock Text="Consultation Fee"  Margin="0,5" Grid.Row="1" />
+                                    <TextBlock Text="Grand Total" Margin="0,5" Grid.Row="2"/>
+                                    <TextBlock Text="Amount Paid" Margin="0,5" Grid.Row="3"/>
+                                    <TextBlock Text="Balance" Margin="0,5" Grid.Row="4"/>
 
-                                    <TextBlock Text=":" Margin="0,10,0,5"/>
-                                    <TextBlock Text=":" Margin="0,5"/>
-                                    <TextBlock Text=":" Margin="0,5"/>
-                                    <TextBlock Text=":" Margin="0,5"/>
+                                    <TextBlock Text=":" Margin="5,10,0,5" Grid.Column="1"/>
+                                    <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="1"/>
+                                    <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="2"/>
+                                    <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="3"/>
+                                    <TextBlock Text=":" Margin="5,5" Grid.Column="1" Grid.Row="4"/>
 
-                                </StackPanel>
+                                    <TextBox Grid.ColumnSpan="2" Text="SUPER BIG TEST" Margin="0,6" Grid.Column="2" Width="200"/>
+                                    <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="1"/>
+                                    <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="2"/>
+                                    <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="3"/>
+                                    <TextBlock Text="RM" Margin="0,7,0,5" Grid.Column="2" Grid.Row="4"/>
 
-                                <StackPanel Grid.Column="2" Margin="5,0">
+                                    <TextBlock Text="30" Margin="0,7,0,5" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="1"/>
+                                    <TextBlock Text="150" Margin="0,7,0,5" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="2"/>
+                                    <TextBox Text="999.99" Margin="0,2,0,5" Width="150" HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="3"/>
+                                    <TextBlock Text="700" Margin="0,7,0,5"  HorizontalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
 
-                                    <TextBlock Text="RM" Margin="0,10,0,5"/>
-                                    <TextBlock Text="RM" Margin="0,5"/>
-                                    <TextBlock Text="RM" Margin="0,5"/>
-                                    <TextBlock Text="RM" Margin="0,5"/>
 
-                                </StackPanel>
+                                    <Button Grid.Row="5" Grid.Column="3" Margin="10"
+                                            Style="{StaticResource MaterialDesignRaisedButton}"
+                                            Content="CHECKOUT" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"/>
 
-                                <StackPanel Grid.Column="3" Margin="5,0">
-
-                                    <TextBlock Text="30" Margin="0,10,0,5" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="150" Margin="0,5" HorizontalAlignment="Center"/>
-                                    <TextBox Text="999.99" Margin="0" Width="80" HorizontalContentAlignment="Center"/>
-                                    <TextBlock Text="700" Margin="0,5"  HorizontalAlignment="Center"/>
-
-                                </StackPanel>
+                                </Grid>
 
                             </Grid>
-
-
-                            <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                                    Margin="0,0,54,20" Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Content="CHECKOUT" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"/>
                             
                         </Grid>
 
