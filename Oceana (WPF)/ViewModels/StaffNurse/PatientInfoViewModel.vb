@@ -115,7 +115,7 @@
     Private _allFieldsFilled As Boolean
     Public ReadOnly Property AllFieldsFilled() As Boolean
         Get
-            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(ID) Or String.IsNullOrEmpty(AD) Or String.IsNullOrEmpty(CN) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(CM) Or String.IsNullOrEmpty(KG) Or String.IsNullOrEmpty(BT) Then
+            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(ID) Or String.IsNullOrEmpty(AD) Or String.IsNullOrEmpty(CN) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(CM) Or String.IsNullOrEmpty(KG) Then
                 Return False
             Else
                 If HasErrors Then
@@ -140,6 +140,8 @@
             Case "Email"
                 If (String.IsNullOrWhiteSpace(EM)) Then
                     errorList.Add("Email cannot be empty!")
+                ElseIf Not EM.Contains("@") Then
+                    errorList.Add("Please enter a valid email!")
                 ElseIf (gVars.Nurse.GetPatientByEmail(EM) IsNot Nothing) Then
                     errorList.Add("Patient with same email already exist in database!")
                 End If

@@ -73,7 +73,7 @@
     Private _allFieldsFilled As Boolean
     Public ReadOnly Property AllFieldsFilled() As Boolean
         Get
-            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(PS) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(PS) Or String.IsNullOrEmpty(UG) Then
+            If String.IsNullOrEmpty(FN) Or String.IsNullOrEmpty(LN) Or String.IsNullOrEmpty(PS) Or String.IsNullOrEmpty(EM) Or String.IsNullOrEmpty(PS) Then
                 Return False
             Else
                 If HasErrors Then
@@ -97,6 +97,8 @@
             Case "Email"
                 If (String.IsNullOrWhiteSpace(EM)) Then
                     errorList.Add("Email cannot be empty!")
+                ElseIf Not EM.Contains("@") Then
+                    errorList.Add("Please enter a valid email!")
                 ElseIf (gVars.Admin.GetUserByEmail(EM) IsNot Nothing) Then
                     errorList.Add("User with same email already exist in database!")
                 End If

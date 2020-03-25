@@ -4,6 +4,7 @@ Public Class BillingTransition
     Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
     Dim msgQ2 As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
     Dim _invoice As ObservableInvoice
+    Dim _nurse As ObservableNurse
     Dim _details As ObservableInvoiceDetails
 
     Public Sub New()
@@ -13,10 +14,19 @@ Public Class BillingTransition
 
         ' Add any initialization after the InitializeComponent() call.
         msgQ = MySnackbar.MessageQueue
-        msgQ2 = MySnackbar.MessageQueue
+        msgQ2 = MySnackbarTwo.MessageQueue
+        _nurse = Me.Resources("nurse")
         _invoice = Me.Resources("Invoice")
         _details = Me.Resources("details")
+        LoadNurse()
 
+    End Sub
+
+    Public Sub LoadNurse()
+        _nurse.Clear()
+        For Each nur As Nurse In gVars.Doctor.GetAllNurse()
+            _nurse.Add(nur)
+        Next
     End Sub
 
     'Transition to next slide if the patient have any invoices
@@ -103,7 +113,7 @@ Public Class BillingTransition
                 Dim result As Boolean = Await DialogHost.Show(UpdateInvoiceDialog, "RootDialog")
                 If result = True Then
 
-                    If gVars.Nurse.UpdateInvoice(txtPayment.Text, txtBalance.Text, details.InvoiceID) > 0 Then
+                    If gVars.Nurse.UpdateInvoice(txtPayment.Text, txtBalance.Text, gVars.Doctor.GetStaffID(cbbNurse.Text), details.InvoiceID) > 0 Then
                         msgQ2.Enqueue("Succesfully update the invoice with the ID " + details.InvoiceID.ToString)
                     Else
                         msgQ2.Enqueue("Failed to update the invoice with the ID " + details.InvoiceID.ToString)

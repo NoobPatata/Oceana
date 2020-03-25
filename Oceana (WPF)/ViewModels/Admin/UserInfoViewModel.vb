@@ -88,6 +88,8 @@
             Case "Email"
                 If (String.IsNullOrWhiteSpace(EM)) Then
                     errorList.Add("Email cannot be empty!")
+                ElseIf Not EM.Contains("@") Then
+                    errorList.Add("Please enter a valid email!")
                 ElseIf (gVars.Admin.GetUserByEmail(EM) IsNot Nothing) Then
                     errorList.Add("User with same email already exist in database!")
                 End If

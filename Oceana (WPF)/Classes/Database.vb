@@ -341,15 +341,30 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
     'Get all the doctor
     Public Function GetAllDoctor() As List(Of Doctor)
         Dim doc As New List(Of Doctor)
-        Dim GetUsers As String = "SELECT * FROM Doctor;"
+        Dim getDoctor As String = "SELECT * FROM Doctor;"
         Using Conn As New OleDbConnection(database.ConnectionString)
-            Dim Cmd As New OleDbCommand(GetUsers, Conn)
+            Dim Cmd As New OleDbCommand(getDoctor, Conn)
             Conn.Open()
             Dim reader As OleDbDataReader = Cmd.ExecuteReader()
             While reader.Read()
-                doc.Add(New Doctor(reader("DoctorID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber"), reader("ContactNumber").ToString, reader("Email"), reader("Address")))
+                doc.Add(New Doctor(reader("DoctorID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber").ToString, reader("ContactNumber").ToString, reader("Email"), reader("Address").ToString))
             End While
             Return doc
+        End Using
+    End Function
+
+    'Get all the nurse
+    Public Function GetAllNurse() As List(Of Nurse)
+        Dim nur As New List(Of Nurse)
+        Dim getNurse As String = "SELECT * FROM Nurse;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getNurse, Conn)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            While reader.Read()
+                nur.Add(New Nurse(reader("Nurse ID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber").ToString, reader("ContactNumber").ToString, reader("Email"), reader("Address").ToString))
+            End While
+            Return nur
         End Using
     End Function
 
@@ -379,6 +394,36 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
             Dim cmd As New OleDbCommand(InsertDateAndDisease, conn)
             cmd.Parameters.AddWithValue("@hari", hari)
             cmd.Parameters.AddWithValue("@sakit", disease)
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+
+    End Function
+
+    'Get Nurse ID
+    Public Function GetStaffID(nama As String)
+        Dim value As Integer
+        Dim getID As String = "select [Nurse ID] from Nurse where FirstName = @FN OR LastName = @LN"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(getID, Conn)
+            Cmd.Parameters.AddWithValue("@FN", nama)
+            Cmd.Parameters.AddWithValue("@LN", nama)
+            Conn.Open()
+            value = Cmd.ExecuteScalar()
+        End Using
+        Return value
+    End Function
+
+    'Update the staffID in invoice
+    Public Function UpdateStaffinInvoice(id As String) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            conn.Open()
+            Dim InsertStaffID As String =
+                        "UPDATE Invoice Set [StaffID] = @ID WHERE [Invoice ID] = (Select MAX([Invoice ID]) from Invoice)"
+            Dim cmd As New OleDbCommand(InsertStaffID, conn)
+            cmd.Parameters.AddWithValue("@ID", id)
             Dim i As Integer
             i = cmd.ExecuteNonQuery()
             conn.Close()
@@ -683,14 +728,15 @@ FROM ([Prescription Details] INNER JOIN [Invoice Details] ON [Prescription Detai
     End Function
 
     'Update the payment information
-    Public Function UpdateInvoice(paid As String, balance As String, id As String) As Integer
+    Public Function UpdateInvoice(paid As String, balance As String, sid As String, id As String) As Integer
         Using conn As New OleDbConnection(database.ConnectionString)
             conn.Open()
             Dim UpdatePayment As String =
-                        "UPDATE INVOICE SET Paid = @paid , Balance = @balance Where [Invoice ID] = @ID;"
+                        "UPDATE INVOICE SET Paid = @paid , Balance = @balance , StaffID = @SNID Where [Invoice ID] = @ID;"
             Dim cmd As New OleDbCommand(UpdatePayment, conn)
             cmd.Parameters.AddWithValue("@paid", paid)
             cmd.Parameters.AddWithValue("@balance", balance)
+            cmd.Parameters.AddWithValue("@SNID", sid)
             cmd.Parameters.AddWithValue("@ID", id)
             Dim i As Integer
             i = cmd.ExecuteNonQuery()

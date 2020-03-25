@@ -4,6 +4,7 @@ Public Class AddPrescription
     Dim _treatment As ObserveTreatment
     Dim _doctor As ObservableDoctor
     Dim _pesakit As ObservePatient
+    Dim _nurse As ObservableNurse
     Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
 
     Public Sub New()
@@ -15,9 +16,11 @@ Public Class AddPrescription
         _treatment = Me.Resources("Treatment")
         _doctor = Me.Resources("doctor")
         _pesakit = Me.Resources("pesakit")
+        _nurse = Me.Resources("nurse")
         LoadTreatment()
         LoadDoctor()
         LoadPatient()
+        LoadNurse()
         msgQ = MySnackbar.MessageQueue
 
     End Sub
@@ -43,18 +46,27 @@ Public Class AddPrescription
         Next
     End Sub
 
+    Public Sub LoadNurse()
+        _nurse.Clear()
+        For Each nur As Nurse In gVars.Doctor.GetAllNurse()
+            _nurse.Add(nur)
+        Next
+    End Sub
+
     Private Sub btnNext_Click(sender As Object, e As RoutedEventArgs) Handles btnNext.Click
 
         If Not String.IsNullOrWhiteSpace(txtDisease.Text) And Not String.IsNullOrWhiteSpace(cbbDoctor.Text) And Not String.IsNullOrWhiteSpace(cbbPatient.Text) And Not String.IsNullOrWhiteSpace(cbbDate.Text) Then
 
-            Transitions.Transitioner.MoveNextCommand.Execute(Nothing, Nothing)
-
             If gVars.Doctor.InsertNewPrescription(cbbPatient.Text, cbbDoctor.Text) > 0 Then
                 If gVars.Doctor.AddDateAndDisease(cbbDate.SelectedDate.Value.Date.ToShortDateString, txtDisease.Text) > 0 Then
                     If gVars.Doctor.CreateNewInvoice() > 0 Then
+                        If gVars.Doctor.UpdateStaffinInvoice(gVars.Doctor.GetStaffID(cbbNurse.Text)) Then
+                        End If
                     End If
                 End If
             End If
+
+            Transitions.Transitioner.MoveNextCommand.Execute(Nothing, Nothing)
 
         Else
 

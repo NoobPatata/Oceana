@@ -24,6 +24,8 @@
         <CollectionViewSource x:Key="cvsDoctor" Source="{StaticResource doctor}"/>
         <local:ObservePatient x:Key="pesakit"/>
         <CollectionViewSource x:Key="cvsPesakit" Source="{StaticResource pesakit}"/>
+        <local:ObservableNurse x:Key="nurse"/>
+        <CollectionViewSource x:Key="cvsNurse" Source="{StaticResource nurse}"/>
     </UserControl.Resources>
     
     <materialDesign:Card  UniformCornerRadius="8">
@@ -34,6 +36,7 @@
             <Grid Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
@@ -52,12 +55,14 @@
                 <TextBlock Grid.Row="1" Margin="10,10,0,5" Text="Patient ID"/>
                 <TextBlock Grid.Row="2" Margin="10,10,0,5" Text="Date"/>
                 <TextBlock Grid.Row="3" Margin="10,10,0,5" Text="Disease"/>
+                <TextBlock Grid.Row="4" Margin="10,10,0,5" Text="Nuse Incharge"/>
 
                 <!--Second Column-->
                 <TextBlock Grid.Column="1" Margin="10,11,10,5" Text=":"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="10,10,10,5" Text=":"/>
                 <TextBlock Grid.Column="1" Grid.Row="2" Margin="10,10,10,5" Text=":"/>
                 <TextBlock Grid.Column="1" Grid.Row="3" Margin="10,10,10,5" Text=":"/>
+                <TextBlock Grid.Column="1" Grid.Row="4" Margin="10,10,10,5" Text=":"/>
 
                 <!--Binding Goes Here-->
                 <ComboBox  x:Name="cbbDoctor" Grid.Column="2"  ItemsSource="{Binding Source={StaticResource cvsDoctor} }" DisplayMemberPath="FirstName"  Margin="7,6,0,0" FontSize="14"/>
@@ -65,7 +70,8 @@
                 <DatePicker SelectedDate="{Binding Hari}" Name="cbbDate" Grid.Row="2" Grid.Column="2" materialDesign:HintAssist.Hint="Pick Date"
                               Margin="7,8,0,3" />
                 <TextBox x:Name="txtDisease" Grid.Column="2" Grid.Row="3" Margin="7,7,0,0"/>
-
+                <ComboBox  x:Name="cbbNurse" Grid.Column="2" Grid.Row="4"  ItemsSource="{Binding Source={StaticResource cvsNurse} }" DisplayMemberPath="FirstName"  Margin="7,6,0,0" FontSize="14"/>
+                
                 <!--Button Goes Here-->
                 <StackPanel Grid.Column="2" Grid.Row="5" Orientation="Horizontal" Margin="0,20" >
 

@@ -90,6 +90,7 @@
     <Compile Include="Classes\Validation.vb" />
     <Compile Include="Model\Invoice.vb" />
     <Compile Include="Model\InvoiceDetails.vb" />
+    <Compile Include="Model\Nurse.vb" />
     <Compile Include="ViewModels\Doctor\DetailsID.vb" />
     <Compile Include="Model\Doctor.vb" />
     <Compile Include="Model\MedicalRecordDetails.vb" />
