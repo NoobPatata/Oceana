@@ -2,6 +2,8 @@
 Public Class AdminPage
 
     Dim _users As ObserveUser
+    Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -9,6 +11,7 @@ Public Class AdminPage
 
         ' Add any initialization after the InitializeComponent() call.
         _users = Me.Resources("users")
+        MySnackbar.MessageQueue = msgQ
         refreshUsers()
 
 
@@ -20,10 +23,10 @@ Public Class AdminPage
         If result = True Then
 
             If gVars.Admin.InsertNewUser(newUser) > 0 Then
-                MsgBox("Success! New user (" + newUser.Email + ") successfully created!")
+                msgQ.Enqueue("Success! New user " + newUser.Email + " successfully created!")
 
             Else
-                MsgBox("Failure! Failed to create user (" + newUser.Email + ")!")
+                msgQ.Enqueue("Failure! Failed to create user " + newUser.Email + "!")
             End If
             gVars.Admin.InsertNewProfile(newUser)
         End If
@@ -32,28 +35,33 @@ Public Class AdminPage
     End Sub
 
     'remove the users selected in the datagrid
-    Private Sub btnRemove_Click(sender As Object, e As RoutedEventArgs) Handles btnRemove.Click
+    Private Async Sub btnRemove_Click(sender As Object, e As RoutedEventArgs) Handles btnRemove.Click
         If (dgUsers.SelectedIndex = -1) Then
             Return
         End If
 
+        Dim result As Boolean = Await DialogHost.Show(MultiDeleteDialogBox, "RootDialog")
         Dim selectedUsers As List(Of LoginUsers) = Converter.SelectedItemsToListOfUsers(dgUsers.SelectedItems)
 
-        For Each profile In selectedUsers
-            If profile.UserGroup = "Doctor" Then
-                gVars.Admin.RemoveDoctor(selectedUsers)
-            ElseIf profile.UserGroup = "Nurse" Then
-                gVars.Admin.RemoveNurse(selectedUsers)
+        If result = True Then
+
+            For Each profile In selectedUsers
+                If profile.UserGroup = "Doctor" Then
+                    gVars.Admin.RemoveDoctor(selectedUsers)
+                ElseIf profile.UserGroup = "Nurse" Then
+                    gVars.Admin.RemoveNurse(selectedUsers)
+                End If
+            Next
+
+            If gVars.Admin.RemoveUsers(selectedUsers) > 0 Then
+                msgQ.Enqueue("Success! " + selectedUsers.Count.ToString + " users removed!")
+            Else
+                msgQ.Enqueue("Failure! " + selectedUsers.Count.ToString + "users failed to be removed!")
             End If
-        Next
 
-        If gVars.Admin.RemoveUsers(selectedUsers) > 0 Then
-            MsgBox("Success! " + selectedUsers.Count.ToString + " users removed!")
-        Else
-            MsgBox("Failure! " + selectedUsers.Count.ToString + "users failed to be removed!")
+            refreshUsers()
+
         End If
-
-        refreshUsers()
 
     End Sub
 
@@ -65,9 +73,9 @@ Public Class AdminPage
         Dim result As Boolean = Await DialogHost.Show(New UserInfo(selecteduser), "RootDialog")
         If result = True Then
             If gVars.Admin.UpdateUser(selecteduser) > 0 Then
-                MsgBox(selecteduser.Email + " has been successfully updated!")
+                msgQ.Enqueue(selecteduser.Email + " has been successfully updated!")
             Else
-                MsgBox("Failed to update " + selecteduser.Email + " !")
+                msgQ.Enqueue("Failed to update " + selecteduser.Email + " !")
             End If
         End If
         refreshUsers()
@@ -78,8 +86,6 @@ Public Class AdminPage
         x.Show()
         Me.Close()
     End Sub
-
-
 
     Private Sub btnRefresh_Click(sender As Object, e As RoutedEventArgs) Handles btnRefresh.Click
         refreshUsers()

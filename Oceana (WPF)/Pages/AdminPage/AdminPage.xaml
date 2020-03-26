@@ -18,86 +18,115 @@
 
     <materialDesign:DialogHost Identifier="RootDialog">
         <materialDesign:DialogHost.DialogContent>
-            <Grid>
-                <Button Margin="5,0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
-                    <Button.CommandParameter>
-                        <sys:Boolean>
-                            True
-                        </sys:Boolean>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Margin="5,0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
-                    <Button.CommandParameter>
-                        <sys:Boolean>
-                            False
-                        </sys:Boolean>
-                    </Button.CommandParameter>
-                </Button>
+            <!-- put your dialog content here-->
+            <Grid Width="800" Background="White" Name="MultiDeleteDialogBox">
+                <StackPanel>
+                    <TextBlock TextAlignment="Center" Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                   Text="Are you sure you want to delete&#x0a;the users listed below?" Margin="10" VerticalAlignment="Top"/>
+                    <DataGrid MaxHeight="600" ColumnWidth="*" x:Name="dgDialogBoxUsers"
+                          CanUserSortColumns="True"
+                          SelectionMode="Single"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                          FontSize="14" IsReadOnly="True"
+                          ItemsSource="{Binding SelectedItems, ElementName=dgUsers}" Margin="10,0" MinHeight="80" VerticalAlignment="Center">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Background" Value="#E8E8E8"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <materialDesign:DataGridTextColumn Binding="{Binding UserID}" Header="UserID" MaxLength="255"/>
+                            <materialDesign:DataGridTextColumn Binding="{Binding Fullname}" Header="Name" MaxLength="255"/>
+                            <materialDesign:DataGridTextColumn Binding="{Binding Email}" Header="Email" MaxLength="255"/>
+                            <materialDesign:DataGridTextColumn Binding="{Binding UserGroup}" Header="User Group" MaxLength="255"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10">
+                        <Button Margin="5,0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Content="Yes" Width="75" Height="35">
+                            <Button.CommandParameter>
+                                <sys:Boolean>
+                                    True
+                                </sys:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Margin="5,0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Content="No" Width="75" Height="35">
+                            <Button.CommandParameter>
+                                <sys:Boolean>
+                                    False
+                                </sys:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
         </materialDesign:DialogHost.DialogContent>
-        
+
         <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="8*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition  Height="9*"/>
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition  Height="9*"/>
+            </Grid.RowDefinitions>
 
-        <Grid Background="#64B5F6">
-            <Image Source="/Resources/No Klinik(2).png"   Margin="0,-3,2,3.4"/>
-        </Grid>
+            <Grid Background="#64B5F6">
+                <Image Source="/Resources/No Klinik(2).png"   Margin="0,-3,2,3.4"/>
+            </Grid>
 
-        <!--Left Panel-->
-        <StackPanel Grid.Row="1" Background="#1565C0">
+            <!--Left Panel-->
+            <StackPanel Grid.Row="1" Background="#1565C0">
 
-            <ListView>
-                <!--Dashboard Button-->
-                <ListViewItem  Background="#1565C0" Height="60" TabIndex="0">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ViewDashboard" Foreground="White" Height="20" Width="20" VerticalAlignment="Center" Margin="10,0"/>
-                        <TextBlock Grid.Column="1" Text="DASHBOARD" VerticalAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold"  Margin="5,0" />
-                    </StackPanel>
-                </ListViewItem>
-            </ListView>
-
-
-
-        </StackPanel>
-
-        <Grid Grid.Column="1" >
-            <materialDesign:ColorZone Background="#64B5F6"  Height="80" Padding="12" VerticalAlignment="Center"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="AUTO"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <!--WELCOME label-->
-                    <Label Content="WELCOME ADMIN"  FontSize="35" Foreground="White"  Margin="5,0,0,0" VerticalAlignment="Center" />
-
-                    <!--Sign Out Button-->
-                    <Button x:Name="btnSignOut" Margin="20,0"  Width="150" Height="34" Grid.Column="1" 
-                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            materialDesign:ButtonAssist.CornerRadius="10" >
+                <ListView>
+                    <!--Dashboard Button-->
+                    <ListViewItem  Background="#1565C0" Height="60" TabIndex="0">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="SignOut" Height="26" Width="26" VerticalAlignment="Center" />
-                            <TextBlock Text="SIGN OUT" VerticalAlignment="Center" Margin="5" FontSize="15"/>
+                            <materialDesign:PackIcon Kind="ViewDashboard" Foreground="White" Height="20" Width="20" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock Grid.Column="1" Text="DASHBOARD" VerticalAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold"  Margin="5,0" />
                         </StackPanel>
+                    </ListViewItem>
+                </ListView>
 
 
-                    </Button>
 
-                </Grid>
-            </materialDesign:ColorZone>
-        </Grid>
+            </StackPanel>
 
-        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Column="1" >
+                <materialDesign:ColorZone Background="#64B5F6"  Height="80" Padding="12" VerticalAlignment="Center"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="AUTO"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <!--WELCOME label-->
+                        <Label Content="WELCOME ADMIN"  FontSize="35" Foreground="White"  Margin="5,0,0,0" VerticalAlignment="Center" />
+
+                        <!--Sign Out Button-->
+                        <Button x:Name="btnSignOut" Margin="20,0"  Width="150" Height="34" Grid.Column="1" 
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="SignOut" Height="26" Width="26" VerticalAlignment="Center" />
+                                <TextBlock Text="SIGN OUT" VerticalAlignment="Center" Margin="5" FontSize="15"/>
+                            </StackPanel>
+
+
+                        </Button>
+
+                    </Grid>
+                </materialDesign:ColorZone>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -244,7 +273,10 @@
 
         </Grid>
 
-    </Grid>
+            <materialDesign:Snackbar Grid.Column="1" Grid.Row="2"  x:Name="MySnackbar" MessageQueue="{materialDesign:MessageQueue}" />
+
+        </Grid>
+    
     </materialDesign:DialogHost>
 
 </Window>
