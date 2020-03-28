@@ -156,12 +156,7 @@ C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patien
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patients.g.vb
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\MedicalRecord.baml
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Patient\Patients.baml
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\MainTransition.g.vb
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\MainTransition.baml
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingTransition.g.vb
 C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\StaffNurse\Billing\BillingTransition.baml
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.g.vb
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddTreatment.g.vb
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddPrescription.baml
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\AddTreatment.baml
-C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Oceana (WPF).vbprojAssemblyReference.cache
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.g.vb
+C:\Users\The Noob Man\Desktop\Git\Oceana (WPF)\obj\Debug\Pages\DoctorPage\Prescription\Prescription.baml

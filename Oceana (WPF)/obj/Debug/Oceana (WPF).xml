@@ -74,26 +74,6 @@ Patients
 InitializeComponent
 </summary>
 </member>
-<member name="T:Oceana__WPF_.AddPrescription">
-<summary>
-AddPrescription
-</summary>
-</member>
-<member name="M:Oceana__WPF_.AddPrescription.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
-</member>
-<member name="T:Oceana__WPF_.AddTreatment">
-<summary>
-AddTreatment
-</summary>
-</member>
-<member name="M:Oceana__WPF_.AddTreatment.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
-</member>
 <member name="T:Oceana__WPF_.BillingTransition">
 <summary>
 BillingTransition
@@ -189,12 +169,12 @@ UserInfo
 InitializeComponent
 </summary>
 </member>
-<member name="T:Oceana__WPF_.MainTransition">
+<member name="T:Oceana__WPF_.Prescription">
 <summary>
-MainTransition
+Prescription
 </summary>
 </member>
-<member name="M:Oceana__WPF_.MainTransition.InitializeComponent">
+<member name="M:Oceana__WPF_.Prescription.InitializeComponent">
 <summary>
 InitializeComponent
 </summary>

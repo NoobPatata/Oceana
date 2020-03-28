@@ -67,7 +67,7 @@ Public Class Patients
 
     Private Async Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
 
-        Await DialogHost.Show(New MainTransition, "RootDialog")
+        Await DialogHost.Show(New Prescription, "RootDialog")
 
     End Sub
 
