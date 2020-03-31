@@ -69,9 +69,20 @@ Public Class AdminPage
         If dgUsers.SelectedIndex = -1 Then
             Return
         End If
+
         Dim selecteduser As LoginUsers = New LoginUsers(dgUsers.SelectedValue)
+
         Dim result As Boolean = Await DialogHost.Show(New UserInfo(selecteduser), "RootDialog")
+
         If result = True Then
+
+
+            If selecteduser.UserGroup = "Doctor" Then
+                gVars.Admin.UpdateDoctor(selecteduser)
+            ElseIf selecteduser.UserGroup = "Nurse" Then
+                gVars.Admin.UpdateNurse(selecteduser)
+            End If
+
             If gVars.Admin.UpdateUser(selecteduser) > 0 Then
                 msgQ.Enqueue(selecteduser.Email + " has been successfully updated!")
             Else

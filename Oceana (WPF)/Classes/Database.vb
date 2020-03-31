@@ -6,6 +6,101 @@ Public Class database
     Private Shared dbSource As String = "Data Source = Oceana.mdb"
     Public Shared ConnectionString As String = dbProvider & dbSource
 
+    'Get the information of the Doctor 
+    Public Function GetDoctorInfo(UN As String) As Doctor
+        Dim GetUsers As String = "SELECT Doctor.DoctorID, Doctor.FIrstName , Doctor.LastName , Doctor.IdentificationNumber , Doctor.ContactNumber , Doctor.Email , Doctor.Address
+FROM Doctor INNER JOIN LoginUser ON Doctor.UserID = LoginUser.UserID Where LoginUser.Username = @UN;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetUsers, Conn)
+            Cmd.Parameters.AddWithValue("@UN", UN)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            Dim doctor As Doctor
+            While reader.Read()
+                doctor = New Doctor(reader("DoctorID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber"), reader("ContactNumber").ToString, reader("Email"), reader("Address").ToString)
+            End While
+            Return doctor
+        End Using
+    End Function
+
+    'Get the information of the Nurse
+    Public Function GetNurseInfo(UN As String) As Nurse
+        Dim GetUsers As String = "SELECT Nurse.[Nurse ID], Nurse.FirstName , Nurse.LastName , Nurse.IdentificationNumber , Nurse.ContactNumber , Nurse.Email , Nurse.Address
+FROM Nurse INNER JOIN LoginUser ON Nurse.UserID = LoginUser.UserID Where LoginUser.Username = @UN;"
+        Using Conn As New OleDbConnection(database.ConnectionString)
+            Dim Cmd As New OleDbCommand(GetUsers, Conn)
+            Cmd.Parameters.AddWithValue("@UN", UN)
+            Conn.Open()
+            Dim reader As OleDbDataReader = Cmd.ExecuteReader()
+            Dim nurse As Nurse
+            While reader.Read()
+                nurse = New Nurse(reader("Nurse ID"), reader("FirstName"), reader("LastName"), reader("IdentificationNumber"), reader("ContactNumber").ToString, reader("Email"), reader("Address").ToString)
+            End While
+            Return nurse
+        End Using
+    End Function
+
+    'Update information of doctor 
+    Public Function UpdateDoctor(doc As Doctor) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateDoctorQuery As String = "UPDATE Doctor SET Doctor.IdentificationNumber = @IC,  Doctor.ContactNumber= @CN, Doctor.Address = @AD WHERE Doctor.DoctorID = @ID"
+            Dim cmd As New OleDbCommand(updateDoctorQuery, conn)
+            cmd.Parameters.AddWithValue("@IC", doc.Identification)
+            cmd.Parameters.AddWithValue("@CN", doc.Contact)
+            cmd.Parameters.AddWithValue("@AD", doc.Address)
+            cmd.Parameters.AddWithValue("@ID", doc.DoctorID)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    'Update information of doctor in LoginUser Table
+    Public Function UpdateDoctorContact(doc As Doctor) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateDoctorQuery As String = "UPDATE LoginUser SET LoginUser.ContactNumber= @CN WHERE LoginUser.FirstName = @FN AND LoginUser.LastName = @LN"
+            Dim cmd As New OleDbCommand(updateDoctorQuery, conn)
+            cmd.Parameters.AddWithValue("@CN", doc.Contact)
+            cmd.Parameters.AddWithValue("@FN", doc.FirstName)
+            cmd.Parameters.AddWithValue("@LN", doc.LastName)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    'Update information of nurse
+    Public Function UpdateNurse(nurse As Nurse) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateNurseQuery As String = "UPDATE Nurse SET Nurse.IdentificationNumber = @IC,  Nurse.ContactNumber= @CN, Nurse.Address = @AD WHERE Nurse.[Nurse ID] = @ID"
+            Dim cmd As New OleDbCommand(updateNurseQuery, conn)
+            cmd.Parameters.AddWithValue("@IC", nurse.Identification)
+            cmd.Parameters.AddWithValue("@CN", nurse.Contact)
+            cmd.Parameters.AddWithValue("@AD", nurse.Address)
+            cmd.Parameters.AddWithValue("@ID", nurse.NurseID)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    'Update information of doctor in LoginUser Table
+    Public Function UpdateNurseContact(nurse As Nurse) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateNurseQuery As String = "UPDATE LoginUser SET LoginUser.ContactNumber= @CN WHERE LoginUser.FirstName = @FN AND LoginUser.LastName = @LN"
+            Dim cmd As New OleDbCommand(updateNurseQuery, conn)
+            cmd.Parameters.AddWithValue("@CN", nurse.Contact)
+            cmd.Parameters.AddWithValue("@FN", nurse.FirstName)
+            cmd.Parameters.AddWithValue("@LN", nurse.LastName)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
 
 End Class
 
@@ -76,6 +171,38 @@ Public Class AdminDB
             cmd.Parameters.AddWithValue("@Password", user.Password)
             cmd.Parameters.AddWithValue("@Email", user.Email)
             cmd.Parameters.AddWithValue("@UserGroup", user.UserGroup)
+            cmd.Parameters.AddWithValue("@userId", user.UserID)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    'Update doctor in doctor table
+    Public Function UpdateDoctor(user As LoginUsers) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateNurseQuery As String = "UPDATE Doctor SET Doctor.FirstName = @Firstname,  Doctor.LastName = @Lastname, Doctor.Email = @Email WHERE Doctor.UserId = @userId"
+            Dim cmd As New OleDbCommand(updateNurseQuery, conn)
+            cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
+            cmd.Parameters.AddWithValue("@Lastname", user.LastName)
+            cmd.Parameters.AddWithValue("@Email", user.Email)
+            cmd.Parameters.AddWithValue("@userId", user.UserID)
+            conn.Open()
+            Dim i As Integer = cmd.ExecuteNonQuery()
+            conn.Close()
+            Return i
+        End Using
+    End Function
+
+    'Update nurse in nurse table
+    Public Function UpdateNurse(user As LoginUsers) As Integer
+        Using conn As New OleDbConnection(database.ConnectionString)
+            Dim updateNurseQuery As String = "UPDATE Nurse SET Nurse.FirstName = @Firstname,  Nurse.LastName = @Lastname, Nurse.Email = @Email WHERE Nurse.UserId = @userId"
+            Dim cmd As New OleDbCommand(updateNurseQuery, conn)
+            cmd.Parameters.AddWithValue("@Firstname", user.FirstName)
+            cmd.Parameters.AddWithValue("@Lastname", user.LastName)
+            cmd.Parameters.AddWithValue("@Email", user.Email)
             cmd.Parameters.AddWithValue("@userId", user.UserID)
             conn.Open()
             Dim i As Integer = cmd.ExecuteNonQuery()

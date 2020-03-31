@@ -7,174 +7,98 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Doctor Console" Height="800" Width="1500"  WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="/Resources/oceanalogo.ico">
-    <Grid>
-       
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="8*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition  Height="9*"/>
-        </Grid.RowDefinitions>
 
-        <Grid Background="#64B5F6">
-            <Image Source="/Resources/No Klinik(2).png"   Margin="0,-3,2,3.4"/>
-        </Grid>
-
-        <!--Left Panel-->
-        <StackPanel Grid.Row="1" Background="#1565C0">
-
-            <ListView x:Name="ListViewMenu" SelectionChanged="ListViewMenu_SelectionChanged">
-
-                <!--Patient Button-->
-                <ListViewItem x:Name="Patient" Background="#1565C0" Height="60" TabIndex="1" >
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Person" Foreground="White" Height="20" Width="20" VerticalAlignment="Center" Margin="10,0"/>
-                        <TextBlock Grid.Column="1" Text="PATIENT" VerticalAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold"  Margin="5,0"/>
-                    </StackPanel>
-                </ListViewItem>
-
-                <!--Prescription Button-->
-            </ListView>
-        </StackPanel>
-
-        <Grid Grid.Column="1" >
-            <materialDesign:ColorZone Background="#64B5F6"  Height="80" Padding="12" VerticalAlignment="Center"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="AUTO"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <!--WELCOME label-->
-                    <Label Content="WELCOME DOCTOR"  FontSize="35" Foreground="White"  Margin="5,0,0,0" VerticalAlignment="Center" />
-
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-
-                        <!--Setting Button-->
-                        <Button
-                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                        ToolTip="User Profile">
-                            <materialDesign:PackIcon
-                                Kind="Gear"
-                                Height="24"
-                                Width="24" />
-                        </Button>
-
-
-                        <!--Sign Out Button-->
-                        <Button x:Name="btnSignOut" Margin="20,0"  Width="150" Height="34" 
-                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            materialDesign:ButtonAssist.CornerRadius="10" >
-
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="SignOut" Height="26" Width="26" VerticalAlignment="Center" />
-                                <TextBlock Text="SIGN OUT" VerticalAlignment="Center" Margin="5" FontSize="15"/>
-                            </StackPanel>
-
-                        </Button>
-                    
-                    </StackPanel>
-                </Grid>
-            </materialDesign:ColorZone>
-        </Grid>
-
-        <Grid x:Name="GridMain" Grid.Row="1" Grid.Column="1">
-
-            <!--<Grid.RowDefinitions>
+    
+    <materialDesign:DialogHost Identifier="MainDialog">
+      
+        <Grid>
+           
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition  Height="9*"/>
             </Grid.RowDefinitions>
 
-            <Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+            
 
-                    --><!--Search Textbox--><!--
+            <Grid Background="#64B5F6">
+                <Image Source="/Resources/No Klinik(2).png"   Margin="0,-3,2,3.4"/>
+            </Grid>
+
+            <!--Left Panel-->
+            <StackPanel Grid.Row="1" Background="#1565C0">
+
+                <ListView x:Name="ListViewMenu" SelectionChanged="ListViewMenu_SelectionChanged">
+
+                    <!--Patient Button-->
+                    <ListViewItem x:Name="Patient" Background="#1565C0" Height="60" TabIndex="1" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Person" Foreground="White" Height="20" Width="20" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock Grid.Column="1" Text="PATIENT" VerticalAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold"  Margin="5,0"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!--Prescription Button-->
+                </ListView>
+            </StackPanel>
+
+            <Grid Grid.Column="1" >
+                <materialDesign:ColorZone Background="#64B5F6"  Height="80" Padding="12" VerticalAlignment="Center"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth3">
                     <Grid>
-
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="AUTO"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="AUTO"/>
                         </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="AUTO"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="20,0">
-                            <materialDesign:PackIcon Grid.Row="1"  Kind="Search" Width="30" Height="30" Margin="15,0,10,0" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Width="250" materialDesign:HintAssist.Hint="SEARCH"  FontSize="15"/>
+                        <!--WELCOME label-->
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="WELCOME DR."  FontSize="35" Foreground="White"  Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label FontSize="35" Foreground="White" VerticalAlignment="Center" x:Name="lblWelcome"/>
+                            <Label Content="!"  FontSize="35" Foreground="White" VerticalAlignment="Center" />
                         </StackPanel>
+                        
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
 
+                            <!--Setting Button-->
+                            <Button x:Name="btnSetting"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                            ToolTip="User Profile">
+                                <materialDesign:PackIcon
+                                    Kind="Gear"
+                                    Height="24"
+                                    Width="24" />
+                            </Button>
+
+
+                            <!--Sign Out Button-->
+                            <Button x:Name="btnSignOut" Margin="20,0"  Width="150" Height="34" 
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" >
+
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="SignOut" Height="26" Width="26" VerticalAlignment="Center" />
+                                    <TextBlock Text="SIGN OUT" VerticalAlignment="Center" Margin="5" FontSize="15"/>
+                                </StackPanel>
+
+                            </Button>
+                        
+                        </StackPanel>
                     </Grid>
-
-                    --><!--Refresh List--><!--
-                    <Button Margin="20,0" Style="{StaticResource MaterialDesignFlatAccentBgButton}" materialDesign:ButtonAssist.CornerRadius="5" VerticalAlignment="Center" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="4*"/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Margin="5,0" Kind="Reload" Width="25" Height="25" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Margin="5,0" Text="REFRESH LIST" VerticalAlignment="Center" Height="20" FontWeight="Bold"/>
-                        </Grid>
-                    </Button>
-
-                </StackPanel>
+                </materialDesign:ColorZone>
             </Grid>
 
+            <Grid x:Name="GridMain" Grid.Row="1" Grid.Column="1"/>
 
-            <materialDesign:Card Background="#ECEFF1" Margin="10,0,10,10" UniformCornerRadius="10" Grid.Row="1" Grid.Column="1" >
+            <materialDesign:Snackbar Grid.Column="1" Grid.Row="2"  x:Name="MySnackbar" MessageQueue="{materialDesign:MessageQueue}" />
 
-                <DataGrid ColumnWidth="*" x:Name="dgUsers"  
-                  CanUserSortColumns="True"
-                  SelectionMode="Extended"
-                  CanUserAddRows="False"
-                  CanUserReorderColumns="False"
-                  AutoGenerateColumns="False"
-                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                  FontSize="18" IsReadOnly="True" >
-
-                    --><!--Header Style--><!--
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
-                            <Setter Property="FontSize" Value="18"/>
-                            <Setter Property="Background" Value="#ECEFF1"/>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
-
-                    --><!--Data Grid Column --><!--
-                    <DataGrid.Columns>
-                        <materialDesign:DataGridTextColumn
-                        Header="Patient ID"
-                        MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
-                        Header="Firstname"
-                        MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
-                        Header="Lastname"
-                        MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
-                        Header="Blood Type"
-                        MaxLength="255"/>
-                        <materialDesign:DataGridTextColumn
-                        Header="Allergies"
-                        MaxLength="255"/>
-                    </DataGrid.Columns>
-
-                </DataGrid>
-
-            </materialDesign:Card>-->
         </Grid>
+    
+    </materialDesign:DialogHost>
 
-    </Grid>
-        
 </Window>
 

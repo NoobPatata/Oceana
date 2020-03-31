@@ -2,6 +2,8 @@
 Imports System.Data.OleDb
 Class MainWindow
 
+    Dim _doctor As ObservableDoctor
+    Dim _nurse As ObservableNurse
     Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
     Public Sub New()
         ' This call is required by the designer.
@@ -36,12 +38,12 @@ Class MainWindow
                             Me.Hide()
 
                         Case "Doctor"
-                            Dim x As New DoctorPage
+                            Dim x As New DoctorPage(gVars.db.GetDoctorInfo(txtUsername.Text))
                             x.Show()
                             Me.Close()
 
                         Case "Nurse"
-                            Dim x As New StaffNurse
+                            Dim x As New StaffNurse(gVars.db.GetNurseInfo(txtUsername.Text))
                             x.Show()
                             Me.Close()
 
@@ -52,6 +54,7 @@ Class MainWindow
             End If
             conn.Close()
         End Using
+
 
     End Sub
 

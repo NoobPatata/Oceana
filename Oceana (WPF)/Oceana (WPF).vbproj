@@ -120,6 +120,12 @@
     <Compile Include="Model\Invoice.vb" />
     <Compile Include="Model\InvoiceDetails.vb" />
     <Compile Include="Model\Nurse.vb" />
+    <Compile Include="Pages\DoctorPage\DocSettings.xaml.vb">
+      <DependentUpon>DocSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StaffNurse\NurseSetting.xaml.vb">
+      <DependentUpon>NurseSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Doctor\DetailsID.vb" />
     <Compile Include="Model\Doctor.vb" />
     <Compile Include="Model\MedicalRecordDetails.vb" />
@@ -152,9 +158,11 @@
     <Compile Include="ViewModels\Admin\AddUserViewModel.vb" />
     <Compile Include="ViewModels\Admin\UserInfoViewModel.vb" />
     <Compile Include="ViewModels\Doctor\AddPrescriptionViewModel.vb" />
+    <Compile Include="ViewModels\Doctor\DoctorSettingsViewModel.vb" />
     <Compile Include="ViewModels\Doctor\MedicalRecordViewModel.vb" />
     <Compile Include="ViewModels\Doctor\PrescriptionTreatments.vb" />
     <Compile Include="ViewModels\StaffNurse\AddPatientViewModel.vb" />
+    <Compile Include="ViewModels\StaffNurse\NurseSettingViewModel.vb" />
     <Compile Include="ViewModels\StaffNurse\PatientInfoViewModel.vb" />
     <Page Include="Pages\AdminPage\AddUser.xaml">
       <SubType>Designer</SubType>
@@ -165,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdminPage\UserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DoctorPage\DocSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +225,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\StaffNurse\BillingTransition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StaffNurse\NurseSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
