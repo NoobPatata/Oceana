@@ -4,6 +4,7 @@ Public Class Patients
 
     Dim _patient As ObservePatient
     Dim _prescription As ObservablePrescription
+    Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
 
 
     Public Sub New()
@@ -14,7 +15,7 @@ Public Class Patients
         ' Add any initialization after the InitializeComponent() call.
         _patient = Me.Resources("patients")
         _prescription = Me.Resources("prescription")
-
+        msgQ = MySnackbar.MessageQueue
 
     End Sub
 

@@ -111,7 +111,7 @@
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Margin="5">
-                                                <materialDesign:PackIcon Kind="Injection" Width="20" Height="20" VerticalAlignment="Center" />
+                                                <materialDesign:PackIcon Kind="Money" Width="20" Height="20" VerticalAlignment="Center" />
                                                 <Rectangle Width="2" Fill="Black" />
                                             </StackPanel>
 

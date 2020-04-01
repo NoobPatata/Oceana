@@ -194,8 +194,10 @@
                 </DataGrid>
                         
             </materialDesign:Card>
-            
-        
+
+            <!--Snack Bar-->
+            <materialDesign:Snackbar x:Name="MySnackbar" MessageQueue="{materialDesign:MessageQueue}" Grid.Row="2" 
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
 
         </Grid>
     </materialDesign:DialogHost>

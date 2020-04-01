@@ -594,7 +594,7 @@ FROM ((([Prescription Details] INNER JOIN Treatment ON [Prescription Details].Tr
         Using Conn As New OleDbConnection(database.ConnectionString)
             Dim Cmd As New OleDbCommand(getID, Conn)
             Conn.Open()
-            value = Cmd.ExecuteScalar()
+            value = Cmd.ExecuteScalar
         End Using
         Return value
     End Function
