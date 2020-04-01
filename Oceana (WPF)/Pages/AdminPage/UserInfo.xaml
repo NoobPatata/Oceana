@@ -19,7 +19,7 @@
         <StackPanel>
             <TextBlock Margin="0,15" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="User Details" VerticalAlignment="Top" TextAlignment="Center"/>
             <Label Margin="25,5" Content="User ID"/>
-            <TextBox IsEnabled="False" IsReadOnly="True" Text="{Binding Info.UserID}" Margin="25,5" x:Name="txtUserId"></TextBox>
+            <TextBox  IsReadOnly="True" Text="{Binding Info.UserID}" Margin="25,5" x:Name="txtUserId"></TextBox>
             <Label Margin="25,5" Content="Firstname"/>
             <TextBox Text="{Binding FN , UpdateSourceTrigger=PropertyChanged}" Margin="25,5" x:Name="txtFirstname"></TextBox>
             <Label Margin="25,5" Content="Lastname"/>
