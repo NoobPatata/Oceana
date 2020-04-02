@@ -2,6 +2,7 @@
 Public Class Nurse_Patient
 
     Dim _patient As ObservePatient
+    Dim msgQ As New SnackbarMessageQueue(TimeSpan.FromSeconds(3))
     Public Sub New()
 
         ' This call is required by the designer.
@@ -9,6 +10,7 @@ Public Class Nurse_Patient
 
         ' Add any initialization after the InitializeComponent() call.
         _patient = Me.Resources("patients")
+        MySnackbar.MessageQueue = msgQ
         refreshPatients()
     End Sub
 
@@ -17,25 +19,32 @@ Public Class Nurse_Patient
         Dim result As Boolean = Await DialogHost.Show(New AddPatients(ispatient), "RootDialog")
         If result = True Then
             If gVars.Nurse.InsertNewPatient(ispatient) > 0 Then
-                MsgBox("Success! New user (" + ispatient.Email + ") successfully created!")
+                msgQ.Enqueue("Success! New user (" + ispatient.Email + ") successfully created!")
             Else
-                MsgBox("Failure! Failed to create user (" + ispatient.Email + ")!")
+                msgQ.Enqueue("Failure! Failed to create user (" + ispatient.Email + ")!")
             End If
         End If
 
         refreshPatients()
     End Sub
 
-    Private Sub btnRemove_Click(sender As Object, e As RoutedEventArgs) Handles btnRemove.Click
+    Private Async Sub btnRemove_Click(sender As Object, e As RoutedEventArgs) Handles btnRemove.Click
         If dgPatient.SelectedIndex = -1 Then
             Return
         End If
+
+        Dim result As Boolean = Await DialogHost.Show(MultiDeleteDialogBox, "RootDialog")
         Dim selectedPatient As List(Of PatientList) = Converter.SelectedItemsToListOfPatient(dgPatient.SelectedItems)
-        If gVars.Nurse.RemovePatient(selectedPatient) > 0 Then
-            MsgBox("Success! " + selectedPatient.Count.ToString + " users removed!")
-        Else
-            MsgBox("Failure! " + selectedPatient.Count.ToString + "users failed to be removed!")
+        If result = True Then
+
+            If gVars.Nurse.RemovePatient(selectedPatient) > 0 Then
+                msgQ.Enqueue("Success! " + selectedPatient.Count.ToString + " users removed!")
+            Else
+                msgQ.Enqueue("Failure! " + selectedPatient.Count.ToString + "users failed to be removed!")
+            End If
+
         End If
+
         refreshPatients()
     End Sub
 
@@ -47,9 +56,9 @@ Public Class Nurse_Patient
         Dim result As Boolean = Await DialogHost.Show(New PatientDetails(selectedpatient), "RootDialog")
         If result = True Then
             If gVars.Nurse.UpdatePatient(selectedpatient) > 0 Then
-                MsgBox(selectedpatient.Email + " has been successfully updated!")
+                msgQ.Enqueue(selectedpatient.Email + " has been successfully updated!")
             Else
-                MsgBox("Failed to update " + selectedpatient.Email + " !")
+                msgQ.Enqueue("Failed to update " + selectedpatient.Email + " !")
             End If
         End If
         refreshPatients()
